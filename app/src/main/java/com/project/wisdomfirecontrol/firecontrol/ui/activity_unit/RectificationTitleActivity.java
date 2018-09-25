@@ -26,7 +26,7 @@ import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.base.UserInfo;
 import com.project.wisdomfirecontrol.common.base.UserManage;
 import com.project.wisdomfirecontrol.firecontrol.base.MyApplication;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.SubmitBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.ui.adapter_Rv.GridImageAdapter;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.PhotoUtils;

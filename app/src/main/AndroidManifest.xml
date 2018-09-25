@@ -23,8 +23,9 @@
 
     <!--录音权限-->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-                     tools:ignore="ProtectedPermissions"/>
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions"/>
     <!--android 8.0-->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <!--短信-->
@@ -216,12 +217,16 @@
             android:name="com.mvp_0726.project_0726.home.ui.MvpMainActivity"
             android:theme="@style/AppTheme_no"/>
         <activity
+            android:name="com.mvp_0726.project_0726.file.FileDisplayActivity"
+            android:theme="@style/AppTheme_no"/>
+        <activity
             android:name="com.mvp_0726.project_0726.web.ui.WebH5Activity"
             android:theme="@style/AppTheme_no">
 
             <intent-filter>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+
                 <action android:name="android.intent.action.VIEW"/>
                 <data
                     android:host="pay.com"

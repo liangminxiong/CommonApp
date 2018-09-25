@@ -50,7 +50,7 @@ import com.project.wisdomfirecontrol.common.util.SharedPreUtil;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.area.AreaPerpersoBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.area.AreaPerpersoDataBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerDataBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.SubmitBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.IHttpService;
 import com.project.wisdomfirecontrol.firecontrol.ui.activity_login_splash.SreachActivity;

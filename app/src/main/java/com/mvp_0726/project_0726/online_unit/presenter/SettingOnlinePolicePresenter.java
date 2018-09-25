@@ -12,8 +12,8 @@ import com.mvp_0726.project_0726.online_unit.contract.SettingOnlinePoliceContrac
 import com.mvp_0726.project_0726.online_unit.event.SettingFragmentEvent;
 import com.mvp_0726.project_0726.online_unit.event.SettingPoliceEvent;
 import com.mvp_0726.project_0726.online_unit.ui.activity.SettingPoliceOnlineActivity;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.EquipmentCount;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetSenorcountBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.EquipmentCount;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetSenorcountBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerBean;
 
 import org.greenrobot.eventbus.EventBus;

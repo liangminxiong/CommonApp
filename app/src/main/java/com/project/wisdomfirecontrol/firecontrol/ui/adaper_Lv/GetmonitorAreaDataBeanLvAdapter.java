@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import com.project.wisdomfirecontrol.common.ui.BaseAdapterLV;
 import com.project.wisdomfirecontrol.common.ui.BaseHolderLV;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetmonitorAreaDataBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetmonitorAreaDataBean;
 import com.project.wisdomfirecontrol.firecontrol.ui.holder_Lv.GetmonitorAreaDataBeanLvHolder;
 
 import java.util.List;

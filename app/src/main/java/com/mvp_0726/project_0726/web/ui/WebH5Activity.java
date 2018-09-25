@@ -26,6 +26,7 @@ import com.mvp_0726.common.utils.StatusBarUtil;
 import com.mvp_0726.common.view.DrawableCenterTextView;
 import com.mvp_0726.common.view.webview.H5Control;
 import com.mvp_0726.project_0726.constant.Constant;
+import com.mvp_0726.project_0726.file.FileDisplayActivity;
 import com.mvp_0726.project_0726.web.utli.WebStringUtils;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Const;
@@ -70,6 +71,7 @@ public class WebH5Activity extends BaseActivity implements H5Control {
     private String url;
     private List<String> itemNameList = new ArrayList<>();
     private TbsReaderView readerView;
+    private final String TAG = "tag";
 
 
     @Override
@@ -183,6 +185,11 @@ public class WebH5Activity extends BaseActivity implements H5Control {
                 url = (String) ecEvent.getData();
                 loadWebH5(url);
                 break;
+
+            case Constans.WEBSUCESS:
+                String url = (String) ecEvent.getData();
+                loadFile(url);
+                break;
         }
     }
 
@@ -258,7 +265,7 @@ public class WebH5Activity extends BaseActivity implements H5Control {
                 tv_item_name_3.setBackgroundColor(getResources().getColor(R.color.white));
                 tv_item_name_4.setBackgroundColor(getResources().getColor(R.color.list_divider));
                 url = "";
-                url = WebStringUtils.getUrlByName(title, Constant.THIRD, "");
+                url = WebStringUtils.getUrlByName(title, Constant.FOURTH, "");
                 EventBus.getDefault().post(new CommonEvent(Constans.WEBH5SUCESS, url));
                 break;
         }
@@ -363,6 +370,11 @@ public class WebH5Activity extends BaseActivity implements H5Control {
         WebH5Activity.this.startActivityForResult(intent, 1);
     }
 
+    /*文件下载*/
+    @Override
+    public void H5ControlAndroidDownloadFile(String url) {
+    }
+
     //文件路径
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -376,13 +388,6 @@ public class WebH5Activity extends BaseActivity implements H5Control {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-//            String[] proj = {MediaStore.Images.Media.DATA};
-//            Cursor actualimagecursor = managedQuery(uri, proj, null, null, null);
-//            int actual_image_column_index = actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//            actualimagecursor.moveToFirst();
-//            String img_path = actualimagecursor.getString(actual_image_column_index);
-//            File file = new File(img_path);
-//            Toast.makeText(Activity_Deatail.this, file.toString(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -393,6 +398,14 @@ public class WebH5Activity extends BaseActivity implements H5Control {
                 .execute(new StringCallback() {
 
                     private FileBean fileBean;
+
+                    @Override
+                    public void upProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
+                        super.upProgress(currentSize, totalSize, progress, networkSpeed);
+                        Log.d("tag", "upProgress: " + progress);
+
+                    }
+
                     @Override
                     public void onSuccess(String s, okhttp3.Call call, Response response) {
                         Log.d("tag", "onSuccess: " + s);
@@ -410,5 +423,10 @@ public class WebH5Activity extends BaseActivity implements H5Control {
                         showErrorToast("文件选择失败，请重新选择文件");
                     }
                 });
+    }
+
+    private void loadFile(final String url) {
+        Log.d(TAG, "loadFile: " + url);
+        FileDisplayActivity.show(WebH5Activity.this, url);
     }
 }

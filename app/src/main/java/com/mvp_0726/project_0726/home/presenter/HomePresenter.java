@@ -10,7 +10,7 @@ import com.mvp_0726.project_0726.home.contract.HomeContract;
 import com.mvp_0726.project_0726.home.model.MarqueeBean;
 import com.mvp_0726.project_0726.home.model.OrgandetailBean;
 import com.mvp_0726.project_0726.home.ui.MvpMainActivity;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.EquipmentCount;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.EquipmentCount;
 
 import org.greenrobot.eventbus.EventBus;
 

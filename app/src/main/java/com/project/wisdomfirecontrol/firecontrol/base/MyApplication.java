@@ -8,6 +8,7 @@ import android.support.multidex.MultiDex;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.mvp_0726.common.base.MvpApplication;
+import com.mvp_0726.project_0726.file.ExceptionHandler;
 import com.project.wisdomfirecontrol.firecontrol.citySelector.db.DBManager;
 import com.project.wisdomfirecontrol.firecontrol.ui.Tctwebview.APIWebviewTBS;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
@@ -30,6 +31,7 @@ public class MyApplication extends MvpApplication {
             mAPIWebviewTBS = APIWebviewTBS.getAPIWebview();
             mAPIWebviewTBS.initTbs(getApplicationContext());
         }
+        ExceptionHandler.getInstance().initConfig(this);
         //个人封装，针对升级----结束
 
         //导入数据库

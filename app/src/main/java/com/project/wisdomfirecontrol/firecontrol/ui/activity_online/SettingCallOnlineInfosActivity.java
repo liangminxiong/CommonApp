@@ -36,7 +36,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Global;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.SubmitBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.ObdBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerDataBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;

@@ -10,7 +10,7 @@ import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.ui.BaseAdapterLV;
 import com.project.wisdomfirecontrol.common.ui.BaseHolderLV;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.TroubleTypesBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.TroubleTypesBean;
 
 /**
  * Created by Administrator on 2018/3/27.

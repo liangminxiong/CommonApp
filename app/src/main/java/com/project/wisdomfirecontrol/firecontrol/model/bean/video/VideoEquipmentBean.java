@@ -1,28 +1,23 @@
-package com.project.wisdomfirecontrol.firecontrol.model.bean;
+package com.project.wisdomfirecontrol.firecontrol.model.bean.video;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Administrator on 2018/6/26.
+ * Created by Administrator on 2018/4/28.
  */
 
-public class GetSenorcountBean implements Serializable {
-
+public class VideoEquipmentBean implements Serializable {
 
     /**
      * success : true
      * msgTitle : 成功提示
      * msg : 操作成功!
-     * data : [{"typename":"全部","num":0}]
      */
-
     private boolean success;
     private String msgTitle;
     private String msg;
-    private List<GetSenorcountDataBean> data;
-
-    private GetSenorcountBean(){}
+    private List<VideoEquipmentDataBean> data;
 
     public boolean isSuccess() {
         return success;
@@ -48,12 +43,11 @@ public class GetSenorcountBean implements Serializable {
         this.msg = msg;
     }
 
-    public List<GetSenorcountDataBean> getData() {
+    public List<VideoEquipmentDataBean> getData() {
         return data;
     }
 
-    public void setData(List<GetSenorcountDataBean> data) {
+    public void setData(List<VideoEquipmentDataBean> data) {
         this.data = data;
     }
-
 }

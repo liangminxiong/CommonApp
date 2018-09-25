@@ -10,19 +10,19 @@ import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.ui.BaseAdapterLV;
 import com.project.wisdomfirecontrol.common.ui.BaseHolderLV;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.VideoEquipmentBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoesXBean;
 
 /**
  * Created by Administrator on 2018/4/28.
  */
 
-public class VideoListHolder extends BaseHolderLV<VideoEquipmentBean.DataBean.VideoesBean> {
+public class VideoListHolder extends BaseHolderLV<VideoesXBean> {
 
     private TextView tv_item_sytem_name;
 
     public VideoListHolder(Context context, ViewGroup parent,
-                           BaseAdapterLV<VideoEquipmentBean.DataBean.VideoesBean> adapter,
-                           int position, VideoEquipmentBean.DataBean.VideoesBean bean) {
+                           BaseAdapterLV<VideoesXBean> adapter,
+                           int position, VideoesXBean bean) {
         super(context, parent, adapter, position, bean);
     }
 
@@ -35,7 +35,7 @@ public class VideoListHolder extends BaseHolderLV<VideoEquipmentBean.DataBean.Vi
     }
 
     @Override
-    protected void onRefreshView(VideoEquipmentBean.DataBean.VideoesBean bean, int position) {
+    protected void onRefreshView(VideoesXBean bean, int position) {
         if (!TextUtils.isEmpty(bean.getName())) {
             tv_item_sytem_name.setText(bean.getName());
         }

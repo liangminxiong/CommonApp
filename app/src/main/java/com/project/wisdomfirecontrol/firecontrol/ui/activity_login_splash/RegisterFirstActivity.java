@@ -35,7 +35,7 @@ import com.lljjcoder.style.citypickerview.CityPickerView;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Const;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.RegisterFirstCompanyBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.RegisterFirstCompanyBean;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.BaiduMapUtils;
 
 /**

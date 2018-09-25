@@ -24,11 +24,17 @@ public class Node<T, B> {
      */
     private T pId;
 
-    private int isOnline;
 
-    private int count;
-
+    private String isOnline;
+    private String count;
     private String name;
+    private String stateType;
+    private String terminalNO;
+
+    private String gt;
+    private String speed;
+    private String obd;
+    private String address;
 
     /**
      * 当前的级别
@@ -71,7 +77,7 @@ public class Node<T, B> {
     public Node() {
     }
 
-    public Node(T id, T pId, String name, int isOnline, int count) {
+    public Node(T id, T pId, String name, String isOnline, String count) {
         super();
         this.id = id;
         this.pId = pId;
@@ -197,19 +203,67 @@ public class Node<T, B> {
         }
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
 
-    public int getIsOnline() {
+    public String getIsOnline() {
         return isOnline;
     }
 
-    public void setIsOnline(int isOnline) {
+    public void setIsOnline(String isOnline) {
         this.isOnline = isOnline;
+    }
+
+    public String getStateType() {
+        return stateType;
+    }
+
+    public void setStateType(String stateType) {
+        this.stateType = stateType;
+    }
+
+    public String getTerminalNO() {
+        return terminalNO;
+    }
+
+    public void setTerminalNO(String terminalNO) {
+        this.terminalNO = terminalNO;
+    }
+
+    public String getGt() {
+        return gt;
+    }
+
+    public void setGt(String gt) {
+        this.gt = gt;
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
+
+    public String getObd() {
+        return obd;
+    }
+
+    public void setObd(String obd) {
+        this.obd = obd;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.mvp_0726.common.event.CommonEvent;
+import com.mvp_0726.common.utils.Constans;
 import com.mvp_0726.common.view.webview.H5JSInterface;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Global;
@@ -14,10 +16,13 @@ import com.project.wisdomfirecontrol.firecontrol.base.MyApplication;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.sdk.CookieManager;
 import com.tencent.smtt.sdk.CookieSyncManager;
+import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Administrator on 2018/2/27.
@@ -68,6 +73,7 @@ public class WebViewUtils {
 
         // 加载Web地址
         webView.loadUrl(url);
+        webView.setDownloadListener(new MyWebViewDownLoadListener());
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -153,7 +159,7 @@ public class WebViewUtils {
 
         h5JSInterface = new H5JSInterface(MyApplication.getContext());
         webView.addJavascriptInterface(h5JSInterface, "javaObject");
-
+        webView.setDownloadListener(new MyWebViewDownLoadListener());
         webView.loadUrl(SERVICE_URL);
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -222,5 +228,19 @@ public class WebViewUtils {
             webView.clearCache(true);
         }
     }
+
+    //内部类
+    private class MyWebViewDownLoadListener implements DownloadListener {
+
+        @Override
+        public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,
+                                    long contentLength) {
+            Log.d(TAG, "onDownloadStart: " + url);
+            EventBus.getDefault().post(new CommonEvent(Constans.WEBSUCESS, url));
+        }
+
+    }
+
+
 
 }

@@ -22,7 +22,7 @@ import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerDataBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.SubmitBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.IHttpService;
 import com.project.wisdomfirecontrol.firecontrol.ui.adaper_Lv.SettingManagerAddressLvAdapter;

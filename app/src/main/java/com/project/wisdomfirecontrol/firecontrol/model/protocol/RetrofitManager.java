@@ -17,6 +17,8 @@ public class RetrofitManager {
 
     private static RetrofitManager instance;
 
+    private static String baseUrl = IHttpService.HOST_URL;
+
     private RetrofitManager() {
     }
 
@@ -42,15 +44,29 @@ public class RetrofitManager {
     private static void initRetrofit() {
         boolean networkConnected = MyApplication.getInstance().isNetworkConnected();
         if (networkConnected) {
-            mRetrofit = new Retrofit.Builder()
-                    .baseUrl(IHttpService.HOST_URL)
-                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+//            mRetrofit = new Retrofit.Builder()
+//                    .baseUrl(baseUrl)
+//                    .client(client)
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build();
+            getRetrofit(baseUrl);
             mHttpService = mRetrofit.create(IHttpService.class);
         } else {
             Global.showToast(MyApplication.instance.getResources().getString(R.string.no_net));
         }
+    }
+
+    public static void changeApiBaseUrl(String newApiBaseUrl) {
+        baseUrl = newApiBaseUrl;
+        getRetrofit(baseUrl);
+    }
+
+    private static void getRetrofit(String baseUrl) {
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
 

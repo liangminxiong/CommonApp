@@ -2,15 +2,15 @@ package com.project.wisdomfirecontrol.firecontrol.model.protocol;
 
 import com.project.wisdomfirecontrol.firecontrol.model.bean.area.AreaPerpersoBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.document.DocumentBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.EquipmentCount;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetCompanyRegisterInfosBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetSenorcountBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetmonitorAreaBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.ImgNumBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.EquipmentCount;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetCompanyRegisterInfosBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetSenorcountBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetmonitorAreaBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.ImgNumBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.SubmitBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.TroubleTypeBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.VideoEquipmentBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.TroubleTypeBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoEquipmentBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.login.LoginChangeBean;
 
 /**

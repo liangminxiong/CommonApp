@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription"/>
 
     <CheckBox
         android:id="@+id/cb_select_tree"
@@ -20,11 +22,19 @@
         android:focusable="false"
         />
 
+    <ImageView
+        android:id="@+id/icon_state"
+        android:layout_width="@dimen/txt_dp_26"
+        android:layout_height="@dimen/txt_dp_26"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"/>
+
     <TextView
         android:id="@+id/id_treenode_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="22sp"/>
+        android:textColor="@color/gray"
+        android:textSize="15sp"/>
 
 </LinearLayout>

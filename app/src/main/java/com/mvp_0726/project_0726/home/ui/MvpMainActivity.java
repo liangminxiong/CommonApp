@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.mvp_0726.common.base.codereview.BaseActivity;
 import com.mvp_0726.common.event.CommonEvent;
 import com.mvp_0726.common.event.NetWorkChangeEvent;
@@ -32,6 +33,7 @@ import com.mvp_0726.common.utils.ImageUtils;
 import com.mvp_0726.common.utils.StatusBarUtil;
 import com.mvp_0726.common.view.popupwindow.PopupWindowHelper;
 import com.mvp_0726.common.view.xMarqueeView.XMarqueeView;
+import com.mvp_0726.project_0726.constant.Constant;
 import com.mvp_0726.project_0726.home.adapter.HomeDatasChangeAdapter;
 import com.mvp_0726.project_0726.home.adapter.MarqueeViewAdapter;
 import com.mvp_0726.project_0726.home.contract.HomeContract;
@@ -41,13 +43,18 @@ import com.mvp_0726.project_0726.home.presenter.HomePresenter;
 import com.mvp_0726.project_0726.online_unit.ui.activity.SettingPoliceOnlineActivity;
 import com.mvp_0726.project_0726.utils.StringUtils;
 import com.mvp_0726.project_0726.utils.XunFeiUtils;
+import com.mvp_0726.project_0726.web.ui.WebH5Activity;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Const;
 import com.project.wisdomfirecontrol.common.util.SharedPreUtil;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.EquipmentCount;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.EquipmentCount;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.login.LoginChangeDataBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.login.MenuDatasBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.login.MenuDatasBeanX;
+import com.project.wisdomfirecontrol.firecontrol.ui.activity_common.OnlineUnitActivity;
+import com.project.wisdomfirecontrol.firecontrol.ui.activity_common.SystemSettingActivity;
+import com.project.wisdomfirecontrol.firecontrol.ui.activity_setting.SettingManagerActivity;
+import com.project.wisdomfirecontrol.firecontrol.ui.activity_video.VideoSytemListActivity;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -111,6 +118,8 @@ public class MvpMainActivity extends BaseActivity implements HomeContract.View {
     private HandlerThread thread;
     private int count;
     private XunFeiUtils mXunFeiUtils;
+    private Intent intent;
+    private String INTENT_VALUE = "";
 
 
     @Override
@@ -564,6 +573,68 @@ public class MvpMainActivity extends BaseActivity implements HomeContract.View {
         homeAdapter = new HomeDatasChangeAdapter(R.layout.recycler_item_home_item, menuDatasList);
         homeAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(homeAdapter);
+        homeAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                String name = menuDatasList.get(position).getName();
+                Log.d(TAG, "onClick: " + name);
+                switch (name) {
+                    case Constant.XIAQU_UNIT://辖区单位
+                        intent = new Intent(MvpMainActivity.this, OnlineUnitActivity.class);
+                        MvpMainActivity.this.startActivity(intent);
+                        break;
+                    case Constant.SYSTEMMAIN://系统维护
+                        intent = new Intent(MvpMainActivity.this, SystemSettingActivity.class);
+//                        intent = new Intent(mContext, TestActivity.class);
+                        MvpMainActivity.this.startActivity(intent);
+                        break;
+                    case Constant.SETTINGMANAGE://设备管理
+                        intent = new Intent(MvpMainActivity.this, SettingManagerActivity.class);
+                        MvpMainActivity.this.startActivity(intent);
+                        break;
+                    case Constant.VEDIO_LOOKING://视频
+                        intent = new Intent(MvpMainActivity.this, VideoSytemListActivity.class);
+                        MvpMainActivity.this.startActivity(intent);
+                        break;
+                    case Constant.ONLINE_UNIT:////联网单位
+                        INTENT_VALUE = Const.GO_SETTINGONLINE_FIRST;
+                        intent = new Intent(MvpMainActivity.this, SettingPoliceOnlineActivity.class);
+                        intent.putExtra(Constant.INTENT_KEY, INTENT_VALUE);
+                        MvpMainActivity.this.startActivity(intent);
+                        break;
+                    case Constant.XIAOFANGBAOJING:////联网单位
+                        INTENT_VALUE = Const.GO_SETTINGONLINE_SECOND;
+                        intent = new Intent(MvpMainActivity.this, SettingPoliceOnlineActivity.class);
+                        intent.putExtra(Constant.INTENT_KEY, INTENT_VALUE);
+                        MvpMainActivity.this.startActivity(intent);
+                        break;
+                    case Constant.SHEBEIGUZHANG:////联网单位
+                        INTENT_VALUE = Const.GO_SETTINGONLINE_THIRD;
+                        intent = new Intent(MvpMainActivity.this, SettingPoliceOnlineActivity.class);
+                        intent.putExtra(Constant.INTENT_KEY, INTENT_VALUE);
+                        MvpMainActivity.this.startActivity(intent);
+                        break;
+                    default:
+//                        Global.showToast("正在开发...");
+                        INTENT_VALUE = StringUtils.getItemNameSuper(name);
+                        if (INTENT_VALUE.equals("正在开发...")) {
+                            com.project.wisdomfirecontrol.common.base.Global.showToast(INTENT_VALUE);
+                            return;
+                        } else if (INTENT_VALUE.equals(Constant.XINGZHENGGONGWEN)) {
+//                            Global.showToast("正在开发...");
+                            List<?> menuDatas = menuDatasList.get(position).getMenuDatas();
+                            if (menuDatas.size() > 0) {//两个
+                                INTENT_VALUE = Constant.XINGZHENGGONGWEN_NEWADD;
+                            }
+                        }
+                        intent = new Intent(new Intent(MvpMainActivity.this, WebH5Activity.class));
+                        intent.putExtra(Constant.INTENT_KEY, INTENT_VALUE);
+                        MvpMainActivity.this.startActivity(intent);
+//
+                        break;
+                }
+            }
+        });
     }
 
     /*notification*/

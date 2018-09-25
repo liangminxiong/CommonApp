@@ -39,6 +39,7 @@ public interface Constant {
     int FISRT = 1;
     int SECOND = 2;
     int THIRD = 3;
+    int FOURTH= 4;
 
     public static final String PLAY_POSITION = "position";
     //录音成功

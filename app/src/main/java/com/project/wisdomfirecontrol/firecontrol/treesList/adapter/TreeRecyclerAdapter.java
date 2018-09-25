@@ -28,7 +28,7 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
      * 存储所有的Node
      */
     protected List<Node> mAllNodes = new ArrayList<>();
-
+    protected int count = 0;
     /**
      * 点击的回调接口
      */
@@ -37,6 +37,7 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
      * 默认不展开
      */
     private int defaultExpandLevel = 0;
+    public boolean isAllSelect;
     /** 展开与关闭的图片*/
     private int iconExpand = -1,iconNoExpand = -1;
     public void setOnTreeNodeClickListener(
@@ -44,10 +45,11 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         this.onTreeNodeClickListener = onTreeNodeClickListener;
     }
     public TreeRecyclerAdapter(RecyclerView mTree, Context context, List<Node> datas,
-                               int defaultExpandLevel, int iconExpand, int iconNoExpand) {
+                               int defaultExpandLevel, int iconExpand, int iconNoExpand , boolean isAllSelect) {
 
         this.iconExpand = iconExpand;
         this.iconNoExpand = iconNoExpand;
+        this.isAllSelect = isAllSelect;
 
         for (Node node:datas){
             node.getChildren().clear();
@@ -76,8 +78,8 @@ public abstract class TreeRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
      *            默认展开几级树
      */
     public TreeRecyclerAdapter(RecyclerView mTree, Context context, List<Node> datas,
-                               int defaultExpandLevel) {
-        this(mTree,context,datas,defaultExpandLevel,-1,-1);
+                               int defaultExpandLevel, boolean isAllSelect) {
+        this(mTree,context,datas,defaultExpandLevel,-1,-1,isAllSelect);
     }
 
 

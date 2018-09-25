@@ -22,6 +22,7 @@ public interface IHttpService {
     String BASE_URL = "http://" + HOST_IP;
     String BASE_URL_IP = "http://www.zgjiuan.cn/zgbd_fireControl/";
     String HOST_URL = BASE_URL + "h5/";
+    String HOST_URL_CHANGE = BASE_URL_IP + "h5/";
     /*企业端*/
     String HOME_URL = BASE_URL_IP + "H5/fire/";
     //1.2联网设备

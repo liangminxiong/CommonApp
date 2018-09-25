@@ -17,7 +17,7 @@ import com.mvp_0726.project_0726.utils.StringUtils;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.firecontrol.base.MyApplication;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetSenorcountDataBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetSenorcountDataBean;
 import com.project.wisdomfirecontrol.firecontrol.ui.adaper_Lv.IndicatorFragmentAdapter;
 import com.project.wisdomfirecontrol.firecontrol.ui.view.TabPageIndicator;
 

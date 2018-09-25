@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import com.project.wisdomfirecontrol.common.ui.BaseAdapterLV;
 import com.project.wisdomfirecontrol.common.ui.BaseHolderLV;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.TroubleTypesBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.TroubleTypesBean;
 import com.project.wisdomfirecontrol.firecontrol.ui.holder_Rv.TroubleTypeHolder;
 
 import java.util.List;

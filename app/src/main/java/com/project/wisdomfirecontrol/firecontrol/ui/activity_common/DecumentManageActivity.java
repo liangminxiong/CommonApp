@@ -19,7 +19,7 @@ import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Const;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.firecontrol.base.MyApplication;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.ImgNumBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.ImgNumBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.IHttpService;
 import com.project.wisdomfirecontrol.firecontrol.ui.activity_unit.HistoryDecumentActivity;

@@ -26,7 +26,7 @@ import com.project.wisdomfirecontrol.common.base.Const;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.util.SharedPreUtil;
 import com.project.wisdomfirecontrol.firecontrol.base.MyApplication;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.EquipmentCount;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.EquipmentCount;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

@@ -3,8 +3,8 @@ package com.mvp_0726.common.network;
 import com.mvp_0726.project_0726.home.model.MarqueeBean;
 import com.mvp_0726.project_0726.home.model.OrgandetailBean;
 import com.mvp_0726.project_0726.login.modle.ChangePwdBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.EquipmentCount;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetSenorcountBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.EquipmentCount;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetSenorcountBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.login.LoginChangeBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerBean;
 

@@ -9,16 +9,19 @@ package com.mvp_0726.common.utils;
 
 public class Constans {
     /*
-    * 网络监听
-    * */
+     * 网络监听
+     * */
     public static final int NET_WORK_AVAILABLE = 0;//有网络
     public static final int NET_WORK_DISABLED = 1;//没网络
 
 
     public static final int COMMON = 5;//公共
+    public static final int COUNT_THREE = 3;
+
+    public static final String COUNT_ZERO = "0";
     /*
-    * home模块 100~200
-    * */
+     * home模块 100~200
+     * */
     public static final int HOMEDATA = 101;//获取首页数据成功
     public static final int HOMEBANNER = 102;//获取首页banner
     public static final int HOMEERROR = 100;//首页请求数据失败
@@ -26,8 +29,8 @@ public class Constans {
 
     public static final String COOKIE_PREF = "cookie_pref";//cookie保存
     /*
-    * 登录注册用户相关10-20
-    * */
+     * 登录注册用户相关10-20
+     * */
     public static final int REGISTER = 10;//注册成功
     public static final int LOGIN = 11;//登录成功
     public static final int RELOGIN = 13;//重新登录
@@ -37,10 +40,11 @@ public class Constans {
     public static final String USERNAME = "user_name";//存储用户名
     public static final String USERPASSWORD = "user_pwd";//存储用户名密码
     public static final int ERROR = 40;//失败
+    public static final int WEBSUCESS = 30;//
 
     /*
-    * 首页 40-50
-    * */
+     * 首页 40-50
+     * */
     public static final int EQUIPMENTCOUNTSUCESS = 41;//获取报警数量成功
     public static final int MARQUEESUCESS = 42;//获取报警数量失败
     public static final int MARQUEEERROR = 45;//获取报警数量失败
@@ -48,7 +52,7 @@ public class Constans {
     public static final int WEBH5SUCESS = 44;//h5成功/*
 
     /* 联网 报警 故障 50-70
-    * */
+     * */
     public static final int SETTINGSUCESS = 50;//获取成功
     public static final int SETTINGFIRSTSUCESS = 51;//获取联网成功
     public static final int SETTINGSECONDSUCESS = 52;//获取报警成功

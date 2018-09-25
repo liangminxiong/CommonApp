@@ -10,7 +10,7 @@ import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.ui.BaseAdapterLV;
 import com.project.wisdomfirecontrol.common.ui.BaseHolderLV;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetmonitorAreaDataBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetmonitorAreaDataBean;
 
 /**
  * Created by Administrator on 2018/4/3.

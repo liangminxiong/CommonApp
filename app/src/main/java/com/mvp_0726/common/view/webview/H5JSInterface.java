@@ -50,6 +50,7 @@ public class H5JSInterface {
         }
     }
 
+
     /*
      * h5发送数据到android
      * */

@@ -12,7 +12,7 @@ import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Const;
 import com.project.wisdomfirecontrol.firecontrol.base.MyApplication;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.SubmitBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.ui.adapter_Rv.HistoryDecumentAdapter;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.PhotoUtils;

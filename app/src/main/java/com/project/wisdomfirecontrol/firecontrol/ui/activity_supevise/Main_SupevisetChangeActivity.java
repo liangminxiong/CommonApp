@@ -16,7 +16,7 @@ import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.util.SharedPreUtil;
 import com.project.wisdomfirecontrol.firecontrol.download.UpdateManager;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.GetCompanyRegisterInfosBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetCompanyRegisterInfosBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.ui.fragment_supevise.Supevise_StatementFragment;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.DatasUtils;

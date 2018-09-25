@@ -3,6 +3,7 @@ package com.project.wisdomfirecontrol.firecontrol.treesList.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -21,12 +22,14 @@ public class SimpleTreeRecyclerAdapter extends TreeRecyclerAdapter {
     private static final String TAG = "tag";
     private List<Node> datas;
 
-    public SimpleTreeRecyclerAdapter(RecyclerView mTree, Context context, List<Node> datas, int defaultExpandLevel, int iconExpand, int iconNoExpand) {
-        super(mTree, context, datas, defaultExpandLevel, iconExpand, iconNoExpand);
+    public SimpleTreeRecyclerAdapter(RecyclerView mTree, Context context, List<Node> datas,
+                                     int defaultExpandLevel, int iconExpand, int iconNoExpand, boolean isAllSelect) {
+        super(mTree, context, datas, defaultExpandLevel, iconExpand, iconNoExpand, isAllSelect);
     }
 
-    public SimpleTreeRecyclerAdapter(RecyclerView mTree, Context context, List<Node> datas, int defaultExpandLevel) {
-        super(mTree, context, datas, defaultExpandLevel);
+    public SimpleTreeRecyclerAdapter(RecyclerView mTree, Context context,
+                                     List<Node> datas, int defaultExpandLevel, boolean isAllSelect) {
+        super(mTree, context, datas, defaultExpandLevel,isAllSelect);
     }
 
     @Override
@@ -43,7 +46,22 @@ public class SimpleTreeRecyclerAdapter extends TreeRecyclerAdapter {
         viewHolder.cb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setChecked(node, viewHolder.cb.isChecked());
+//                setChecked(node, viewHolder.cb.isChecked());
+                if (isAllSelect) {
+                    count++;
+                    if (count > 1) {
+//                        Global.showToast("只支持单选");
+                    }
+                    for (Node data : mAllNodes) {
+                        data.setChecked(false);
+                    }
+                }
+//                node.setChecked(true);
+
+                /*多选*/
+                boolean checked = viewHolder.cb.isChecked();
+                setChecked(node, checked);
+                notifyDataSetChanged();
             }
         });
 
@@ -51,6 +69,7 @@ public class SimpleTreeRecyclerAdapter extends TreeRecyclerAdapter {
             viewHolder.cb.setChecked(true);
         } else {
             viewHolder.cb.setChecked(false);
+            count = 0;
         }
 
         if (node.getIcon() == -1) {
@@ -60,9 +79,12 @@ public class SimpleTreeRecyclerAdapter extends TreeRecyclerAdapter {
             viewHolder.icon.setImageResource(node.getIcon());
         }
 
-        if (node.getCount() != 0) {
-            viewHolder.label.setText(node.getName() + "  ( " + node.getCount() + " )");
+        if (TextUtils.isEmpty(node.getCount())) {
+            viewHolder.label.setText(node.getName() + "  ( " + node.getIsOnline() + " )");
+            viewHolder.icon_state.setVisibility(View.GONE);
         } else {
+            viewHolder.icon_state.setVisibility(View.VISIBLE);
+            viewHolder.icon_state.setImageResource(R.drawable._games_amber_500_24dp);
             viewHolder.label.setText(node.getName());
         }
     }
@@ -83,6 +105,7 @@ public class SimpleTreeRecyclerAdapter extends TreeRecyclerAdapter {
                     .findViewById(R.id.cb_select_tree);
             label = (TextView) itemView.findViewById(R.id.id_treenode_label);
             icon = (ImageView) itemView.findViewById(R.id.icon);
+            icon_state = (ImageView) itemView.findViewById(R.id.icon_state);
 
         }
     }
