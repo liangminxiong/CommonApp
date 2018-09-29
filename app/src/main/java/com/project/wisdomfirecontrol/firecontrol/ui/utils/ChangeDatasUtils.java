@@ -9,8 +9,9 @@ import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.base.UserInfo;
 import com.project.wisdomfirecontrol.common.base.UserManage;
 import com.project.wisdomfirecontrol.common.util.LogUtil;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.video.ChangeVideoEquipmentDataBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.video.Organ;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoEquipmentDataBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.video.OrgansBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoesBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoesXBean;
 import com.project.wisdomfirecontrol.firecontrol.treesList.Node;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by Administrator on 2018/5/14.
  */
 
-public class DatasUtils {
+public class ChangeDatasUtils {
 
     private static int firstOsize;
     private static String secondId;
@@ -66,7 +67,7 @@ public class DatasUtils {
     private static String sixthVehicleTerminalNO;
 
 
-    public static List<Node> ReturnTreesDatas(List<VideoEquipmentDataBean> msg) {
+    public static List<Node> ReturnTreesDatas(List<ChangeVideoEquipmentDataBean> msg) {
 
         List<Node> mDatas = new ArrayList<Node>();
 
@@ -76,15 +77,15 @@ public class DatasUtils {
         }
 
         String treeStr = initDatasTreeStr(msg);
-        VideoEquipmentDataBean msgBean = msg.get(0);
+        ChangeVideoEquipmentDataBean msgBean = msg.get(0);
 
         String orgShortName = msgBean.getOrgName();
 //        String fatherPid = msgBean.getPid();
         String fatherId = msgBean.getId();
 
-        List<VideoesBean> firstVehicles = msgBean.getVideoes();
+        List<VideoesXBean> firstVehicles = msgBean.getVideoes();
         firstVsize = firstVehicles.size();
-        List<VideoEquipmentDataBean.OrgansBean> firstOrgans = msgBean.getOrgans();
+        List<OrgansBean> firstOrgans = msgBean.getOrgans();
         firstOsize = firstOrgans.size();
         /*第一层*/
         // id , pid , label , 其他属性
@@ -92,7 +93,7 @@ public class DatasUtils {
 
         if (firstVsize > 0) {
 //            for (VideoEquipmentDataBean.VideoesBean firstVehicle : firstVehicles) {
-            for (VideoesBean firstVehicle : firstVehicles) {
+            for (VideoesXBean firstVehicle : firstVehicles) {
                 firstVehicleId = firstVehicle.getId();
                 firstVRegistrationNO = firstVehicle.getName();
                 firstVehicleTerminalNO = firstVehicle.getTerminalno();
@@ -103,18 +104,18 @@ public class DatasUtils {
 
         /*第二层*/
         if (firstOsize > 0) {
-            for (VideoEquipmentDataBean.OrgansBean firstOrgan : firstOrgans) {
+            for (OrgansBean firstOrgan : firstOrgans) {
                 String strSecond = initDatasTreeStrSecond(firstOrgan);
                 secondId = firstOrgan.getId();
                 secondOrgShortName = firstOrgan.getOrgName();
-                List<VideoesXBean> secondVehicles = firstOrgan.getVideoes();
+                List<VideoesBean> secondVehicles = firstOrgan.getVideoes();
                 secondVsize = secondVehicles.size();
                 List<Organ> organs = firstOrgan.getOrgans();
                 secondOsize = organs.size();
 
                 mDatas.add(new Node(secondId + "", fatherId + "", secondOrgShortName, strSecond, ""));
                 if (secondVsize > 0) {
-                    for (VideoesXBean secondVehicle : secondVehicles) {
+                    for (VideoesBean secondVehicle : secondVehicles) {
 
                         secondVehicleId = secondVehicle.getId();
                         secondVehicleRegistrationNO = secondVehicle.getName();
@@ -238,7 +239,7 @@ public class DatasUtils {
     }
 
 
-    private static String initDatasTreeStr(List<VideoEquipmentDataBean> msg) {
+    private static String initDatasTreeStr(List<ChangeVideoEquipmentDataBean> msg) {
 
         int countAll = 0;
 
@@ -246,13 +247,13 @@ public class DatasUtils {
         if (size <= 0) {
             return "";
         }
-        VideoEquipmentDataBean msgBean = msg.get(0);
+        ChangeVideoEquipmentDataBean msgBean = msg.get(0);
 
 //        第二层
 //        List<VideoEquipmentDataBean.VideoesBean> firstVehicles = msgBean.getVideoes();
-        List<VideoesBean> firstVehicles = msgBean.getVideoes();
+        List<VideoesXBean> firstVehicles = msgBean.getVideoes();
         firstVsize = firstVehicles.size();
-        List<VideoEquipmentDataBean.OrgansBean> firstOrgans = msgBean.getOrgans();
+        List<OrgansBean> firstOrgans = msgBean.getOrgans();
         firstOsize = firstOrgans.size();
 
         // id , pid , label , 其他属性
@@ -262,14 +263,14 @@ public class DatasUtils {
         }
 
         if (firstOsize > 0) {
-            for (VideoEquipmentDataBean.OrgansBean organ : firstOrgans) {
-                List<VideoesXBean> secondVehicles = organ.getVideoes();
+            for (OrgansBean organ : firstOrgans) {
+                List<VideoesBean> secondVehicles = organ.getVideoes();
                 secondVsize = secondVehicles.size();
 
                 List<Organ> organs = organ.getOrgans();
                 secondOsize = organs.size();
                 if (secondVsize > 0) {
-                    for (VideoesXBean secondVehicle : secondVehicles) {
+                    for (VideoesBean secondVehicle : secondVehicles) {
                         countAll++;
                     }
                 }
@@ -353,15 +354,15 @@ public class DatasUtils {
         return String.valueOf(countAll);
     }
 
-    private static String initDatasTreeStrSecond(VideoEquipmentDataBean.OrgansBean firstOrgans) {
+    private static String initDatasTreeStrSecond(OrgansBean firstOrgans) {
 
         int countAll = 0;
-        List<VideoesXBean> secondVehicles = firstOrgans.getVideoes();
+        List<VideoesBean> secondVehicles = firstOrgans.getVideoes();
         secondVsize = secondVehicles.size();
         List<Organ> organs = firstOrgans.getOrgans();
         secondOsize = organs.size();
         if (secondVsize > 0) {
-            for (VideoesXBean secondVehicle : secondVehicles) {
+            for (VideoesBean secondVehicle : secondVehicles) {
                 countAll++;
             }
         }

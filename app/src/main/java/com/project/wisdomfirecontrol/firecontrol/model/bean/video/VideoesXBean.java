@@ -12,12 +12,14 @@ public class VideoesXBean implements Serializable {
      * createTime : 2018-04-27 15:34:42.0
      */
 
+    public void VideosXBean(){}
+
+    private String createTime;
     private String id;
     private String name;
+    private String pid;
     private String terminalno;
     private String txh;
-    private String pid;
-    private String createTime;
 
     public String getId() {
         return id;

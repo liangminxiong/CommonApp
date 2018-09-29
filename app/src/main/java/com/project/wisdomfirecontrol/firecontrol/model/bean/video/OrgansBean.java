@@ -27,7 +27,7 @@ public class OrgansBean implements Serializable {
     private String fax;
     private String address;
     private List<Organ> organs;
-    private List<VideoesBean> vehicles;
+    private List<VideoesBean> videoes;
 
     public String getId() {
         return id;
@@ -93,12 +93,11 @@ public class OrgansBean implements Serializable {
         this.organs = organs;
     }
 
-    public List<VideoesBean> getVehicles() {
-        return vehicles;
+    public List<VideoesBean> getVideoes() {
+        return videoes;
     }
 
-    public void setVehicles(List<VideoesBean> vehicles) {
-        this.vehicles = vehicles;
+    public void setVideoes(List<VideoesBean> videoes) {
+        this.videoes = videoes;
     }
-
 }

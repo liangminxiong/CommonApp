@@ -13,8 +13,8 @@ public class Organ implements Serializable {
 
     public Organ() {
         organs = new ArrayList<>();
-//        organsbeen = new ArrayList<>();
-        vehicles = new ArrayList<>();
+        organsbeen = new ArrayList<>();
+        videoes = new ArrayList<>();
     }
 
     private String principal;
@@ -25,8 +25,8 @@ public class Organ implements Serializable {
     private String pid;
     private String orgName;
     private List<Organ> organs;
-    //    private List<OrgansBean> organsbeen;
-    private List<VideoesBean> vehicles;
+    private List<OrgansBean> organsbeen;
+    private List<VideoesBean> videoes;
 
     public String getId() {
         return id;
@@ -84,21 +84,6 @@ public class Organ implements Serializable {
         this.address = address;
     }
 
-    public List<VideoesBean> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(List<VideoesBean> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-//    public List<OrgansBean> getOrgansBeen() {
-//        return organsbeen;
-//    }
-//
-//    public void setOrgansbeen(List<OrgansBean> organs) {
-//        this.organsbeen = organs;
-//    }
 
     public List<Organ> getOrgans() {
         return organs;
@@ -107,5 +92,21 @@ public class Organ implements Serializable {
     public void setOrgans(List<Organ> organs) {
         this.organs = organs;
 
+    }
+
+    public List<OrgansBean> getOrgansbeen() {
+        return organsbeen;
+    }
+
+    public void setOrgansbeen(List<OrgansBean> organsbeen) {
+        this.organsbeen = organsbeen;
+    }
+
+    public List<VideoesBean> getVideoes() {
+        return videoes;
+    }
+
+    public void setVideoes(List<VideoesBean> videoes) {
+        this.videoes = videoes;
     }
 }

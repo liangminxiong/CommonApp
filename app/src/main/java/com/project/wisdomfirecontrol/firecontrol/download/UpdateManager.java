@@ -144,6 +144,7 @@ public class UpdateManager implements View.OnClickListener {
     private TextView ok;
     private TextView cancle;
 
+    @SuppressLint("SetTextI18n")
     private void ShowUpdateDialog() {
 
         Builder builder = new Builder(mContext);

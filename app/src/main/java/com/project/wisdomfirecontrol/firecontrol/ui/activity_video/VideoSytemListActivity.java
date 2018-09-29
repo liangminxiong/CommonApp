@@ -13,15 +13,15 @@ import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Global;
 import com.project.wisdomfirecontrol.common.base.UserManage;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.video.ChangeVideoEquipmentDataBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoEquipmentBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoEquipmentDataBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.IHttpService;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.RetrofitManager;
 import com.project.wisdomfirecontrol.firecontrol.treesList.Node;
 import com.project.wisdomfirecontrol.firecontrol.treesList.OnTreeNodeClickListener;
 import com.project.wisdomfirecontrol.firecontrol.treesList.adapter.SimpleTreeRecyclerAdapter;
-import com.project.wisdomfirecontrol.firecontrol.ui.utils.DatasUtils;
+import com.project.wisdomfirecontrol.firecontrol.ui.utils.ChangeDatasUtils;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.Unit_StringUtils;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public class VideoSytemListActivity extends BaseActivity {
 
     }
 
-    //    获取条数
+    //    获取视频列表条数
     private void getEquipmentCount() {
         CommonProtocol commonProtocol = new CommonProtocol();
         pid = Unit_StringUtils.getUserPid(Global.mContext);
@@ -91,14 +91,14 @@ public class VideoSytemListActivity extends BaseActivity {
         super.onHttpSuccess(reqType, obj);
         dismissWaitDialog();
         VideoEquipmentBean bean = (VideoEquipmentBean) obj.obj;
-        List<VideoEquipmentDataBean> beanList = bean.getData();
+        List<ChangeVideoEquipmentDataBean> beanList = bean.getData();
         if (beanList.size() > 0) {
             initRVdatas(beanList);
         }
 
     }
 
-    private void initRVdatas(List<VideoEquipmentDataBean> beanList) {
+    private void initRVdatas(List<ChangeVideoEquipmentDataBean> beanList) {
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
 //        //第一个参数  RecyclerView
 //        //第二个参数  上下文
@@ -106,7 +106,7 @@ public class VideoSytemListActivity extends BaseActivity {
 //        //第四个参数  默认展开层级数 0为不展开
 //        //第五个参数  展开的图标
 //        //第六个参数  闭合的图标
-        List<Node> mDatas = DatasUtils.ReturnTreesDatas(beanList);
+        List<Node> mDatas = ChangeDatasUtils.ReturnTreesDatas(beanList);
 
         mAdapter = new SimpleTreeRecyclerAdapter(recyclerview, this,
                 mDatas, 0, R.drawable.tree_open, R.drawable.tree_close,true);

@@ -3,7 +3,7 @@ package com.project.wisdomfirecontrol.firecontrol.model.bean.video;
 import java.io.Serializable;
 import java.util.List;
 
-public class VideoEquipmentDataBean implements Serializable {
+public class ChangeVideoEquipmentDataBean implements Serializable {
     /**
      * id : yun
      * orgName : 乆安消防平台
@@ -23,7 +23,7 @@ public class VideoEquipmentDataBean implements Serializable {
     private String principalTel;
     private String address;
     private List<OrgansBean> organs;
-    private List<VideoesBean> videoes;
+    private List<VideoesXBean> videoes;
 
     public String getId() {
         return id;
@@ -73,11 +73,11 @@ public class VideoEquipmentDataBean implements Serializable {
         this.organs = organs;
     }
 
-    public List<VideoesBean> getVideoes() {
+    public List<VideoesXBean> getVideoes() {
         return videoes;
     }
 
-    public void setVideoes(List<VideoesBean> videoes) {
+    public void setVideoes(List<VideoesXBean> videoes) {
         this.videoes = videoes;
     }
 
@@ -87,101 +87,5 @@ public class VideoEquipmentDataBean implements Serializable {
 
     public void setFax(String fax) {
         this.fax = fax;
-    }
-
-    public static class OrgansBean implements Serializable {
-        /**
-         * id : 2dfc331cffffff9600bb36f6ada0b2a9
-         * pid : yun
-         * orgName : 测试短信
-         * principal :
-         * principalTel :
-         * fax :
-         * organs : []
-         * videoes : []
-         * address : 广东省-深圳市-市辖区-
-         */
-
-        private String id;
-        private String pid;
-        private String orgName;
-        private String principal;
-        private String principalTel;
-        private String fax;
-        private String address;
-        private List<Organ> organs;
-        private List<VideoesXBean> videoes;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getPid() {
-            return pid;
-        }
-
-        public void setPid(String pid) {
-            this.pid = pid;
-        }
-
-        public String getOrgName() {
-            return orgName;
-        }
-
-        public void setOrgName(String orgName) {
-            this.orgName = orgName;
-        }
-
-        public String getPrincipal() {
-            return principal;
-        }
-
-        public void setPrincipal(String principal) {
-            this.principal = principal;
-        }
-
-        public String getPrincipalTel() {
-            return principalTel;
-        }
-
-        public void setPrincipalTel(String principalTel) {
-            this.principalTel = principalTel;
-        }
-
-        public String getFax() {
-            return fax;
-        }
-
-        public void setFax(String fax) {
-            this.fax = fax;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public List<Organ> getOrgans() {
-            return organs;
-        }
-
-        public void setOrgans(List<Organ> organs) {
-            this.organs = organs;
-        }
-
-        public List<VideoesXBean> getVideoes() {
-            return videoes;
-        }
-
-        public void setVideoes(List<VideoesXBean> videoes) {
-            this.videoes = videoes;
-        }
     }
 }

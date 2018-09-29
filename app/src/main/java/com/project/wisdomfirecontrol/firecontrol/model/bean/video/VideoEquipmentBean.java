@@ -17,7 +17,8 @@ public class VideoEquipmentBean implements Serializable {
     private boolean success;
     private String msgTitle;
     private String msg;
-    private List<VideoEquipmentDataBean> data;
+    private List<ChangeVideoEquipmentDataBean> data;
+//    private List<VideoEquipmentDataBean> data;
 
     public boolean isSuccess() {
         return success;
@@ -43,11 +44,11 @@ public class VideoEquipmentBean implements Serializable {
         this.msg = msg;
     }
 
-    public List<VideoEquipmentDataBean> getData() {
+    public List<ChangeVideoEquipmentDataBean> getData() {
         return data;
     }
 
-    public void setData(List<VideoEquipmentDataBean> data) {
+    public void setData(List<ChangeVideoEquipmentDataBean> data) {
         this.data = data;
     }
 }
