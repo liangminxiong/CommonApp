@@ -22,7 +22,7 @@ import com.mvp_0726.common.network.ApiRetrofit;
 import com.mvp_0726.common.network.NetworkUrl;
 import com.mvp_0726.common.utils.Constans;
 import com.mvp_0726.common.utils.PreferencesUtils;
-import com.mvp_0726.project_0726.home.ui.MvpMainActivity;
+import com.mvp_0726.project_0726.home.ui.MvpThirdMainActivity;
 import com.mvp_0726.project_0726.login.contract.LoginContract;
 import com.mvp_0726.project_0726.login.presenter.SplashPresenter;
 import com.project.wisdomfirecontrol.R;
@@ -123,6 +123,12 @@ public class SplashActivity extends com.mvp_0726.common.base.codereview.BaseActi
         } else {//申请权限
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 2);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED) {
+        } else {//申请权限
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 3);
         }
     }
 
@@ -244,7 +250,8 @@ public class SplashActivity extends com.mvp_0726.common.base.codereview.BaseActi
         String companyName = personel.getOrgName();
         SharedPreUtil.saveString(Global.mContext, "companyName", companyName);
         SharedPreUtil.saveString(Global.mContext, "companyType", companyType);
-        SharedPreUtil.saveString(Global.mContext, "orgShortName", companyLogoName);
+//        SharedPreUtil.saveString(Global.mContext, "orgShortName", companyLogoName);
+        SharedPreUtil.saveString(Global.mContext, "orgShortName", roleName);
 
         if (!TextUtils.isEmpty(imagthpath)) {
             SharedPreUtil.saveString(Global.mContext, "imagthpath", imagthpath);
@@ -258,9 +265,10 @@ public class SplashActivity extends com.mvp_0726.common.base.codereview.BaseActi
             UserManage.getInstance().saveUserPhoneInfo(Global.mContext, telNum);
             UserManage.getInstance().saveUserType(Global.mContext, type);
         }
-        Log.d("tag", "loginDatas: " +userName );
+        Log.d("tag", "loginDatas: " + userName);
 //        intent = new Intent(this, MainChangeActivity.class);
-        Intent intent = new Intent(this, MvpMainActivity.class);
+//        Intent intent = new Intent(this, MvpMainActivity.class);
+        Intent intent = new Intent(this, MvpThirdMainActivity.class);
         intent.putExtra("loginBean", data);
         startActivity(intent);
         finish();

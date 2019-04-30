@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Const;
 import com.project.wisdomfirecontrol.common.base.Global;
+import com.project.wisdomfirecontrol.common.util.LogUtil;
 import com.project.wisdomfirecontrol.common.util.SharedPreUtil;
 import com.project.wisdomfirecontrol.common.util.StringUtils;
 
@@ -163,12 +164,11 @@ public class UpdateManager implements View.OnClickListener {
         String des = "";
         String description = version.Description;
         if (!TextUtils.isEmpty(description)) {
-            if (description.contains(",")) {
-                String[] split = description.split(",");
-                int count = 1;
+            if (description.contains(";")) {
+                String[] split = description.split(";");
                 for (String aSplit : split) {
                     if (!TextUtils.isEmpty(aSplit)) {
-                        des = des + "\r\n" + count++ + "." + aSplit;
+                        des = des + "\r\n"  + aSplit;
                     }
                 }
 
@@ -291,6 +291,7 @@ public class UpdateManager implements View.OnClickListener {
             version.VerName = jsonObj.getString("VerName");
             version.VerCode = jsonObj.getString("VerCode");
             version.Description = jsonObj.getString("Description");
+            LogUtil.d("=========" + version.VerName + " VerCode =" + version.VerCode);
             SharedPreUtil.saveString(Global.mContext, "description", version.Description);
             if (version.VerCode != null && version.VerName != null) {
                 Message msg = new Message();

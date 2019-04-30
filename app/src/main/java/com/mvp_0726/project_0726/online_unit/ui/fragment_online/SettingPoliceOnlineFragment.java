@@ -2,7 +2,6 @@ package com.mvp_0726.project_0726.online_unit.ui.fragment_online;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -110,7 +109,6 @@ public class SettingPoliceOnlineFragment extends BaseFragment implements Setting
 //            ApiRetrofit.changeApiBaseUrl(NetworkUrl.ANDROID_TEST_SERVICE);
             presenter.getSenorcount(pid, state);
         }
-        Log.d("tag", "showNetDatas 1111: " + state);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -155,7 +153,6 @@ public class SettingPoliceOnlineFragment extends BaseFragment implements Setting
     private void showNetDatas(List<GetSenorcountDataBean> data) {
         for (GetSenorcountDataBean datum : data) {
             String typename = datum.getTypename();
-            Log.d("tag", "showNetDatas: " + typename);
             int datumNum = datum.getNum();
             if (typename.equals("全部")) {
                 list.set(0, "全部（" + String.valueOf(datumNum) + "）");

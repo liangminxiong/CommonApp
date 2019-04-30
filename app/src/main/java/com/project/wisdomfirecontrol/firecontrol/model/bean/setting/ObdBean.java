@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class ObdBean implements Serializable {
+
     /**
      * ae :
      * av :

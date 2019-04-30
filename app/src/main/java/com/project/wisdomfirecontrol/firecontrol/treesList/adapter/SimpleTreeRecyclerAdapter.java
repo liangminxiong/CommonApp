@@ -84,7 +84,7 @@ public class SimpleTreeRecyclerAdapter extends TreeRecyclerAdapter {
             viewHolder.icon_state.setVisibility(View.GONE);
         } else {
             viewHolder.icon_state.setVisibility(View.VISIBLE);
-            viewHolder.icon_state.setImageResource(R.drawable._games_amber_500_24dp);
+            viewHolder.icon_state.setImageResource(R.drawable.video);
             viewHolder.label.setText(node.getName());
         }
     }

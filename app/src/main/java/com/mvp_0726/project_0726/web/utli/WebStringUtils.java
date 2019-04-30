@@ -24,11 +24,6 @@ public class WebStringUtils {
             }
         } else if (name.equals(Constant.TONGJIFENXI)) {//统计分析
             if (countNumber == Constant.FISRT) {
-//                url = IHttpService.DEVICEORDER_URL_UNIT;
-//            } else if (countNumber == Constant.SECOND) {
-//                url = IHttpService.ATOUMATION_ANALYZE_URL_UNIT;
-//            } else {
-//                url = IHttpService.FIREALARM_ANALYZE_URL_UNIT;
                 url = IHttpService.TONGJIFENFX;
             }
         } else if (name.equals(Constant.XIAOFANGPINGJI)) {//消防评级
@@ -41,11 +36,6 @@ public class WebStringUtils {
             }
         } else if (name.equals(Constant.HISTORY_RECOIDING)) {//历史记录
             if (countNumber == Constant.FISRT) {
-//                url = IHttpService.ATOUMATION_ANALYZE_URL;
-//            } else if (countNumber == Constant.SECOND) {
-//                url = IHttpService.FIREALARM_ANALYZE_URL;
-//            } else {
-//                url = IHttpService.DEVICEORDER_ANALYZE_URL;
                 url = IHttpService.HOSTORY_RECORD;
             }
         } else if (name.equals(Constant.SAFE_DENGJI)) {//安全等级
@@ -78,6 +68,26 @@ public class WebStringUtils {
                 url = IHttpService.RECTIFICATION_DOCUMENT_URL;
             } else {
                 url = Const.GO_RECTIFICATION;
+            }
+        } else if (name.equals(Constant.SECURITY_ZHENGGAI)) {//公文整改
+            if (countNumber == Constant.FISRT) {
+                url = IHttpService.URL_H5_PUBLISH_ORDER;//工单发布
+            } else {
+                url = IHttpService.URL_H5_MY_ORDER;//我的工单
+            }
+        } else if (name.equals(Constant.SECURITY_FIL)) {//安全档案
+            if (countNumber == Constant.FISRT) {
+                url = IHttpService.URL_H5_MY_GRID;//我的档案
+            } else {
+                url = IHttpService.URL_H5_MY_AUDIT;//审核档案
+            }
+        } else if (name.equals(Constant.ORGANSMANAGE)) {//机构管理
+            if (countNumber == Constant.FISRT) {
+                url = IHttpService.URL_H5_ORGANSMANAGE;
+            }
+        } else if (name.equals(Constant.AREAMANAGE)) {//区域管理
+            if (countNumber == Constant.FISRT) {
+                url = IHttpService.URL_H5_AREAMANAGE;
             }
         }
 
@@ -122,11 +132,17 @@ public class WebStringUtils {
 
             list.add("通知公文");
             list.add("整改公文");
-            list.add("通知列表");
-            list.add("整改列表");
+            list.add("通知发布");
+            list.add("整改发布");
         } else if (name.equals(Constant.XINGZHENGGONGWEN_NEWADD)) {
             list.add("消防通知");
             list.add("消防整改");
+        } else if (name.equals(Constant.SECURITY_ZHENGGAI)) {
+            list.add("工单发布");
+            list.add("我的工单");
+        } else if (name.equals(Constant.SECURITY_FIL)) {
+            list.add("我的档案");
+            list.add("审核档案");
         }
 
         return list;

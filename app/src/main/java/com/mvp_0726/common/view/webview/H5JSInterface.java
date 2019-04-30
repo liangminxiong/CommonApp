@@ -50,6 +50,15 @@ public class H5JSInterface {
         }
     }
 
+    /*
+     * android发送数据到h5
+     * */
+    @JavascriptInterface
+    public void androidUploadByEl(String el) {
+        if (control != null) {
+            control.H5ControlAndroidEvent(el);
+        }
+    }
 
     /*
      * h5发送数据到android

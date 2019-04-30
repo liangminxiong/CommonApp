@@ -87,7 +87,7 @@
     <color name="mvp_title_red">#ff5c5c</color>
     <color name="mvp_main_yellow">#f4a102</color>
     <color name="mvp_home_red">#ff4242</color>
-    <color name="mvp_home_item_txt">#666666</color>
+    <color name="mvp_home_item_txt">#4A4A4A</color>
     <color name="mvp_home_item_txt_hand">#333333</color>
     <color name="home_item_count_equipment">#37baff</color>
     <color name="home_item_count_callpolice_normal">#02d43e</color>
@@ -99,6 +99,10 @@
     <color name="barchart_yellow">#fddd33</color>
     <color name="barchart_green">#20a08e</color>
     <color name="barchart_blue">#2d6388</color>
+
+    <color name="color_lian">#03f2f7</color>
+    <color name="color_bao">#FA3131</color>
+    <color name="color_gu">#FFC600</color>
 
 
 </resources>

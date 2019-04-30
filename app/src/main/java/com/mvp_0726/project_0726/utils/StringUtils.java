@@ -47,10 +47,59 @@ public class StringUtils {
             itemName = Constant.SAFE_PERSONAL;
         } else if (name.equals(Constant.XINGZHENGGONGWEN)) {//行政公文
             itemName = Constant.XINGZHENGGONGWEN;
+        } else if (name.equals(Constant.SECURITY_FIL)) {//安全档案
+            itemName = Constant.SECURITY_FIL;
+        } else if (name.equals(Constant.SECURITY_ZHENGGAI)) {//消防整改
+            itemName = Constant.SECURITY_ZHENGGAI;
+        } else if (name.equals(Constant.ORGANSMANAGE)) {//机构管理
+            itemName = Constant.ORGANSMANAGE;
+        } else if (name.equals(Constant.AREAMANAGE)) {//区域管理
+            itemName = Constant.AREAMANAGE;
         } else {
             itemName = "正在开发...";
         }
 
         return itemName;
     }
+
+    /*空字符串返回无*/
+    public static String isEntryStrWu(String string) {
+        return TextUtils.isEmpty(string) ? "无" : string;
+    }
+
+    /*空字符串返回斜杠*/
+    public static String isEntryStrXieg(String string) {
+        return TextUtils.isEmpty(string) ? "---" : string;
+    }
+
+    /*空字符串返回空*/
+    public static String isEntryStrNull(String string) {
+        return TextUtils.isEmpty(string) ? "" : string;
+    }
+
+    /*空字符串返回0*/
+    public static String isEntryStrZero(String string) {
+        return TextUtils.isEmpty(string) ? "0" : string;
+    }
+
+    /*去掉时间末尾 .0*/
+    public static String returnStrTime(String string) {
+        if (TextUtils.isEmpty(string)) {
+            return isEntryStrXieg(string);
+        }
+        String[] strings = string.split("\\.");
+        return strings[0];
+    }
+
+//    public static void callPhone(Context context, String phone) {
+//        if (PhonePwdCheckUtils.isMobileNumber(phone)) {
+//            if (!TextUtils.isEmpty(phone)) {
+//                Uri uri = Uri.parse("tel:" + phone);
+//                Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+//                context.startActivity(intent);
+//            }
+//        } else {
+//            ToastUtils.showToast("该手机号异常");
+//        }
+//    }
 }

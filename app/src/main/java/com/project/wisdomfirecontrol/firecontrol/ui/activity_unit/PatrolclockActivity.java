@@ -4,11 +4,12 @@ import android.Manifest;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -105,7 +106,7 @@ public class PatrolclockActivity extends BaseActivity {
         if (photoUtils == null) {
             photoUtils = new PhotoUtils(PatrolclockActivity.this, recyclerView,
                     onAddPicClickListener, selectList, tv_upload_infos,
-                    Const.MAXSELECTNUM_SIX,Const.COUNT_FOURTH,true);
+                    Const.MAXSELECTNUM_SIX, Const.COUNT_FOURTH, true);
         }
 
         //开启前台定位服务：
@@ -130,35 +131,25 @@ public class PatrolclockActivity extends BaseActivity {
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
         public void onAddPicClick() {
-            requestPermission(1, Manifest.permission.CAMERA, new Runnable() {
-                @Override
-                public void run() {
-                    if (photoUtils != null) {
-                        photoUtils.showSelectVideoOrPhoto("photo","activity");
-                    }
+            if (ContextCompat.checkSelfPermission(PatrolclockActivity.this, Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED) {
+                if (photoUtils != null) {
+                    photoUtils.showSelectVideoOrPhoto("photo", "activity");
                 }
-            }, new Runnable() {
-                @Override
-                public void run() {
-                    Global.showToast(getResources().getString(R.string.no_photo_perssion));
-                }
-            });
+            } else {
+                Global.showToast(getResources().getString(R.string.no_photo_perssion));
+            }
         }
 
     };
 
     private void isHasLocationPermission(final MapView bmapView) {
-        requestPermission(1, Manifest.permission.ACCESS_FINE_LOCATION, new Runnable() {
-            @Override
-            public void run() {
-                initMap(bmapView);
-            }
-        }, new Runnable() {
-            @Override
-            public void run() {
-                showToast(getResources().getString(R.string.open_gps));
-            }
-        });
+        if (ContextCompat.checkSelfPermission(PatrolclockActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            initMap(bmapView);
+        } else {
+            showToast(getResources().getString(R.string.open_gps));
+        }
     }
 
     private void initMap(MapView bmapView) {
@@ -179,8 +170,9 @@ public class PatrolclockActivity extends BaseActivity {
         option.setAddrType("all");
         mLocClient.setLocOption(option);
         mLocClient.start();
-        baiduMap.showMapPoi(false);
+//        baiduMap.showMapPoi(false);
     }
+
 
 
     @Override
@@ -210,8 +202,8 @@ public class PatrolclockActivity extends BaseActivity {
                 upload_signin();
                 break;
         }
-
     }
+
 
     //    打卡签到
     private void upload_signin() {
@@ -239,9 +231,10 @@ public class PatrolclockActivity extends BaseActivity {
                 return;
             }
             commonProtocol = new CommonProtocol();
-            showWaitDialog(this, getString(R.string.txt_signin));
-            Log.d(TAG, "upload_signin: " + userid + " +++ " + lat + " +++ " + lng +
-                    " +++ " + mAddrStr + " +++ " + memo + " +++ " + imageurl + "\r\n +++ " + pid + " +++ ");
+            showWaitDialog(this, "打卡中...");
+//            Log.d(TAG, "upload_signin: " + userid + " +++ " + lat + " +++ " + lng +
+//                    " +++ " + mAddrStr + " +++ " + memo + " +++ " + imageurl + "\r\n +++ " + pid + " +++ ");
+//            RetrofitManager.changeApiBaseUrl(NetworkUrl.ANDROID_BAIDU_SERVICE);
             commonProtocol.daka(this, userid, lat, lng, mAddrStr, memo, imageurl, pid);
         }
 
@@ -250,15 +243,15 @@ public class PatrolclockActivity extends BaseActivity {
     @Override
     public void onHttpSuccess(int reqType, Message msg) {
         super.onHttpSuccess(reqType, msg);
-        dismissWaitDialog();
         showSuccessDialog(this, getString(R.string.success));
+
     }
+
 
     @Override
     public void onHttpError(int reqType, String error) {
         super.onHttpError(reqType, error);
         dismissWaitDialog();
-        Log.d(TAG, "onHttpError: " + error);
     }
 
     @Override
@@ -304,7 +297,7 @@ public class PatrolclockActivity extends BaseActivity {
             if (isFirstLoc) {
                 isFirstLoc = false;
                 MapStatus ms = new MapStatus.Builder().target(latLng)
-                        .overlook(-20).zoom(Const.BAIDU_ZOOM).build();
+                        .overlook(-20).zoom(Const.BAIDU_ZOOM_14).build();
                 ooA = new MarkerOptions().icon(map_location).zIndex(10);
                 ooA.position(latLng);
                 mMarker = null;
@@ -389,5 +382,7 @@ public class PatrolclockActivity extends BaseActivity {
 
         return imageurl;
     }
+
+
 
 }

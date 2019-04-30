@@ -33,9 +33,13 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.mvp_0726.project_0726.bean.settingpolice.GetsensorObdDataBean;
+import com.mvp_0726.project_0726.bean.settingpolice.GetsensorObdSuccessBean;
+import com.mvp_0726.project_0726.bean.settingpolice.ObdParamBean;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Global;
+import com.project.wisdomfirecontrol.common.util.LogUtil;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.ObdBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerDataBean;
@@ -72,7 +76,7 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
     private String personal;
     private String address;
     private String tel;
-    private TextView tv_really_police, tv_jia_police, tv_test,dinaya;
+    private TextView tv_really_police, tv_jia_police, tv_test, dinaya;
     private CommonProtocol commonProtocol;
     private String sensorid;
     private BarChart barchart_e, barchart_v, barchart_temp;
@@ -148,8 +152,13 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
                 tv_callpolice_equipmen.setText("报警类型：" + type);
 
                 ObdBean obd = settingManagerDataBean.getObd();
-
-                showObdDatas(obd);
+                if (obd != null) {
+//                    showObdDatas(obd);
+                }
+                LogUtil.d("============size==00===" + terminalno);
+                if (!TextUtils.isEmpty(terminalno)) {
+                    getOBDDatas(terminalno);
+                }
 
                 /*监控区*/
                 String areaname = settingManagerDataBean.getAreaname();
@@ -173,7 +182,6 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
 
                 if (isFirstLocate) {
                     //传入经纬度
-
                     //建立更新工厂
                     MapStatusUpdate update = MapStatusUpdateFactory.newLatLng(latLng);
                     //执行更新
@@ -203,7 +211,8 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
 
 
     /*展示obd数据*/
-    private void showObdDatas(ObdBean obd) {
+//    private void showObdDatas(ObdBean obd) {
+    private void showObdDatas(ObdParamBean obd) {
         List<BarEntry> entries_e = new ArrayList<>();
         List<BarEntry> entries_v = new ArrayList<>();
         List<BarEntry> entries_temp = new ArrayList<>();
@@ -217,7 +226,9 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
         entries_e.add(new BarEntry(0, returnFloat(ae)));
         entries_e.add(new BarEntry(1, returnFloat(be)));
         entries_e.add(new BarEntry(2, returnFloat(ce)));
-        entries_e.add(new BarEntry(3, returnFloat(louele)));
+        String substring = louele.substring(0, louele.length() - 2);
+        LogUtil.d("=============" + ae + " ++ " + be + " ++ " + ce + " +  " + substring);
+        entries_e.add(new BarEntry(3, Float.valueOf(substring)));
 
         String av = obd.getAv();
         String bv = obd.getBv();
@@ -255,8 +266,8 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
             } else if (str.contains("℃")) {
                 String[] as = str.split("℃");
                 f = Float.valueOf(as[0]);
-            } else if (str.contains("ma")) {
-                String[] as = str.split("ma");
+            } else if (str.contains("mA")) {
+                String[] as = str.split("mA");
                 f = Float.valueOf(as[0]);
             }
         } else {
@@ -411,6 +422,14 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
         commonProtocol = new CommonProtocol();
         Log.d(TAG, "updateSensor: " + sensorid);
         commonProtocol.UpdateSensor(this, sensorid);
+
+        commonProtocol.getsensorObd(this, sensorid);
+    }
+
+    private void getOBDDatas(String terminalNo) {
+        showWaitDialog(SettingCallOnlineInfosActivity.this, getString(R.string.inupdate));
+        commonProtocol = new CommonProtocol();
+        commonProtocol.getsensorObd(this, terminalNo);
     }
 
     @Override
@@ -428,7 +447,14 @@ public class SettingCallOnlineInfosActivity extends BaseActivity {
                     showToast("操作失败，请重试!");
                 }
             }
+        } else if (reqType == IHttpService.TYPE_GETOBD) {
+            GetsensorObdSuccessBean bean = (GetsensorObdSuccessBean) obj.obj;
+            GetsensorObdDataBean obdDataBean = bean.getData().get(0);
+            LogUtil.d("============size==" + bean.getData().size() + "  +++ " + obdDataBean.getProcUserName());
+            ObdParamBean obdBean = obdDataBean.getObdParam();
+            showObdDatas(obdBean);
         }
+
     }
 
     @Override

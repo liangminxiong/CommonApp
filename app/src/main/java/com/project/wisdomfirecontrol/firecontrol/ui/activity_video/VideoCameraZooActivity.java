@@ -47,7 +47,7 @@ public class VideoCameraZooActivity extends BaseActivity {
             Global.showToast("终端号获取失败");
         } else {
             NetClient.Initialize();
-            NetClient.SetDirSvr(IHttpService.HOST_IP, IHttpService.HOST_IP, 6605, 0);//114.55.118.196
+            NetClient.SetDirSvr(IHttpService.VIDEO_IP, IHttpService.VIDEO_IP, 6605, 0);//114.55.118.196
             mImageView.setViewInfo(num, num, channel, channum);
             mImageView.StartAV();
             mUpdateViewThread = new UpdateViewThread();

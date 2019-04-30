@@ -46,7 +46,7 @@ public class LoginPresenter extends BasePresenterImpl<LoginContract.View, LoginA
                     @Override
                     protected void onFail(Exception e) {
                         dismissLoadingDialog();
-                        EventBus.getDefault().post(new CommonEvent(Constans.ERROR, "账号或密码错误!"));
+                        EventBus.getDefault().post(new CommonEvent(Constans.ERROR, "请检查账号、密码或网络!"));
                     }
                 });
     }

@@ -20,9 +20,9 @@ import android.widget.TextView;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Global;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerDataBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.IHttpService;
 import com.project.wisdomfirecontrol.firecontrol.ui.adaper_Lv.SettingManagerAddressLvAdapter;
@@ -119,6 +119,7 @@ public class SettingManagerActivity extends BaseActivity implements AdapterView.
     @Override
     public void initData() {
 //        getCompanyInfosDatas();
+        getNetDatas();
     }
 
     private void getCompanyInfosDatas() {
@@ -130,7 +131,7 @@ public class SettingManagerActivity extends BaseActivity implements AdapterView.
     @Override
     protected void onStart() {
         super.onStart();
-        getNetDatas();
+
     }
 
     private void getNetDatas() {
@@ -138,7 +139,8 @@ public class SettingManagerActivity extends BaseActivity implements AdapterView.
         showWaitDialog(this, getString(R.string.inupdate));
         commonProtocol = new CommonProtocol();
 //        pid = "yun";
-        Log.d(TAG, "getNetDatas: " + pid);
+//        Log.d(TAG, "getNetDatas: " + pid);
+//        RetrofitManager.changeApiBaseUrl(NetworkUrl.ANDROID_BAIDU_SERVICE);
         commonProtocol.getsensor(this, pid);
     }
 
@@ -484,7 +486,7 @@ public class SettingManagerActivity extends BaseActivity implements AdapterView.
     }
 
     /*删除未绑定设备区域
-    */
+     */
     private void tv_item_name_no(int position) {
         sensorid = "";
         sensorid = data.get(position).getAreaid();

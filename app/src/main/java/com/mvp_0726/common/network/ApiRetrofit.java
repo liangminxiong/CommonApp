@@ -20,8 +20,8 @@ public class ApiRetrofit {
     private static volatile ApiRetrofit apiRetrofit;
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
     private static CallAdapter.Factory adapterFactory = RxJava2CallAdapterFactory.create();
-    private static final int CONNECT_TIME_OUT = 10;
-    private static final int READ_TIME_OUT = 10;
+    private static final int CONNECT_TIME_OUT = 30;
+    private static final int READ_TIME_OUT = 30;
     private static String baseUrl = NetworkUrl.getNetWorkName();
     private static ApiService apiServise;
     private static Retrofit retrofit;
@@ -52,6 +52,7 @@ public class ApiRetrofit {
                 .addInterceptor(httpLoggingInterceptor)//打印log日志
                 .addInterceptor(new AddCookieInterceptor())
                 .addInterceptor(new SaveCookieInterceptor())
+                .addInterceptor(new MoreBaseUrlInterceptor())
                 .retryOnConnectionFailure(true)//失败重连
                 .build();
 

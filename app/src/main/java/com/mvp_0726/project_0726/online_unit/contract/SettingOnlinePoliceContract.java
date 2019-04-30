@@ -14,5 +14,7 @@ public interface SettingOnlinePoliceContract {
         void getSenorcount(String pid, String state);
 
         void getSensor(String pid, String type, String state, String ishave,int what,int errorWhat);
+
+        void getsensorObd(String terminalNo);
     }
 }

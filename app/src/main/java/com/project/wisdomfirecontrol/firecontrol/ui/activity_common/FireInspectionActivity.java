@@ -6,13 +6,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Const;
 import com.project.wisdomfirecontrol.firecontrol.ui.adapter_Rv.FireInspectionAdapter;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/3/30.

@@ -29,6 +29,7 @@ public class MenuDatasBean implements Serializable {
     private String roleid;
     private String imagePath;
     private List<?> menuDatas;
+    private int count=0;
 
     public String getId() {
         return id;
@@ -116,5 +117,13 @@ public class MenuDatasBean implements Serializable {
 
     public void setMenuDatas(List<?> menuDatas) {
         this.menuDatas = menuDatas;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

@@ -53,13 +53,11 @@ public class AboutVersionCodeActivity extends BaseActivity {
         String des = "";
         String description = SharedPreUtil.getString(Global.mContext, "description", "");
         if (!StringUtils.isEmpty(description)) {
-            if (description.contains(",")) {
-                String[] split = description.split(",");
-                int len = split.length;
-                int count = 1;
+            if (description.contains(";")) {
+                String[] split = description.split(";");
                 for (String aSplit : split) {
                     if (!StringUtils.isEmpty(aSplit)) {
-                        des = des + "\r\n" + count++ + "." + aSplit;
+                        des = des + "\r\n" + aSplit;
                     }
                 }
 

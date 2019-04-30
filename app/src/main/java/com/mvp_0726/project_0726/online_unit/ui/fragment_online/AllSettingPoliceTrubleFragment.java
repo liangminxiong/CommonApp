@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -167,7 +166,6 @@ public class AllSettingPoliceTrubleFragment extends BaseFragment implements Sett
             showErrorToast("无网络，请检查网络失败");
             return;
         }
-        Log.d(TAG, "disposeSettingFragmentEvent 11 : " + state);
         pid = StringUtils.getUserPid(getContext());
         presenter.getSensor(pid, "", state, "ishave", Constans.ALLSUCESS, Constans.ALLERROR);
     }
@@ -190,7 +188,6 @@ public class AllSettingPoliceTrubleFragment extends BaseFragment implements Sett
                             SettingManagerDataBean settingManagerDataBean = data.get(position);
                             if (settingManagerDataBean != null) {
                                 String state = settingManagerDataBean.getState();
-                                Intent intent = new Intent();
                                 if (state.equals("2")) {
                                     tv_item_time(data, position);
                                 } else {
@@ -216,13 +213,13 @@ public class AllSettingPoliceTrubleFragment extends BaseFragment implements Sett
 //        });
         rv_list_setting.setAdapter(settingAdapter);
 //        rv_list_setting.setOnItemClickListener(getActivity());
-        rv_list_setting.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//        rv_list_setting.setOnScrollListener(new AbsListView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 //                Log.d(TAG, "onScrollStateChanged222: " + firstVisibleItem + " +++ " + visibleItemCount + " ++ " + totalItemCount);
                 //isLoad为是否滚动到底部
 //                isLoad = ((firstVisibleItem+visibleItemCount)==totalItemCount);
@@ -231,8 +228,8 @@ public class AllSettingPoliceTrubleFragment extends BaseFragment implements Sett
 //                settingAdapter.showNosettingCheck(view, isShow);
 //                settingAdapter.notifyDataSetChanged();
 //                }
-            }
-        });
+//            }
+//        });
 
     }
 

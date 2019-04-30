@@ -104,7 +104,7 @@
             android:theme="@style/Notitle"/>
         <activity
             android:name="com.project.wisdomfirecontrol.firecontrol.ui.activity_unit.PatrolclockActivity"
-            android:theme="@style/Notitle"/>
+            android:theme="@style/AppTheme_no"/>
         <activity
             android:name="com.project.wisdomfirecontrol.firecontrol.ui.activity_unit.RectificationDocumentActivity"
             android:theme="@style/Notitle"/>
@@ -213,8 +213,13 @@
         <activity android:name=".firecontrol.ui.activity_common.OnlineUnitActivity"/>
 
         <!--MVP 0726-->
+        <!--第二期首页-->
         <activity
             android:name="com.mvp_0726.project_0726.home.ui.MvpMainActivity"
+            android:theme="@style/AppTheme_no"/>
+        <!--第三期-->
+        <activity
+            android:name="com.mvp_0726.project_0726.home.ui.MvpThirdMainActivity"
             android:theme="@style/AppTheme_no"/>
         <activity
             android:name="com.mvp_0726.project_0726.file.FileDisplayActivity"
@@ -235,6 +240,8 @@
             </intent-filter>
 
         </activity>
+
+        <activity android:name="com.mvp_0726.project_0726.ui.setting.NewSettingManagerActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -278,7 +285,6 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </receiver>
-
 
     </application>
 

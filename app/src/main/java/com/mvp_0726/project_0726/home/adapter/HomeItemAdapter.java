@@ -4,7 +4,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,8 +23,8 @@ import java.util.List;
 public class HomeItemAdapter extends BaseItemDraggableAdapter<MenuDatasBean, BaseViewHolder> {
 
     private TextView tv_item_name;
-    private LinearLayout layout_item_home_item;
-    private RelativeLayout rl_home_item;
+    private RelativeLayout layout_item_home_item;
+//    private RelativeLayout rl_home_item;
     private ImageView iv_item_images;
 
     public HomeItemAdapter(int layoutResId, @Nullable List<MenuDatasBean> data) {
@@ -35,7 +34,7 @@ public class HomeItemAdapter extends BaseItemDraggableAdapter<MenuDatasBean, Bas
     @Override
     protected void convert(BaseViewHolder helper, MenuDatasBean item) {
         layout_item_home_item = helper.getView(R.id.layout_item_home_item);
-        rl_home_item = helper.getView(R.id.rl_home_item);
+//        rl_home_item = helper.getView(R.id.rl_home_item);
         tv_item_name = helper.getView(R.id.tv_item_name);
         iv_item_images = helper.getView(R.id.iv_item_images);
         tv_item_name.setTextSize(13f);
@@ -45,16 +44,16 @@ public class HomeItemAdapter extends BaseItemDraggableAdapter<MenuDatasBean, Bas
             params.width = (int) Global.mScreenWidth / 4;
             layout_item_home_item.setLayoutParams(params);
 
-            ViewGroup.LayoutParams params_rl = rl_home_item.getLayoutParams();
-            if (Global.isPad()) {
-                params_rl.height = (int) Global.mScreenWidth / 16;
-                params_rl.width = (int) Global.mScreenWidth / 16;
-            } else {
-                params_rl.height = (int) Global.mScreenWidth / 11;
-                params_rl.width = (int) Global.mScreenWidth / 10;
-            }
-
-            rl_home_item.setLayoutParams(params_rl);
+//            ViewGroup.LayoutParams params_rl = rl_home_item.getLayoutParams();
+//            if (Global.isPad()) {
+//                params_rl.height = (int) Global.mScreenWidth / 16;
+//                params_rl.width = (int) Global.mScreenWidth / 16;
+//            } else {
+//                params_rl.height = (int) Global.mScreenWidth / 11;
+//                params_rl.width = (int) Global.mScreenWidth / 10;
+//            }
+//
+//            rl_home_item.setLayoutParams(params_rl);
 
             helper.setText(R.id.tv_item_name, item.getName())
                     .setTextColor(R.id.tv_item_name, mContext.getResources().getColor(R.color.mvp_home_item_txt))

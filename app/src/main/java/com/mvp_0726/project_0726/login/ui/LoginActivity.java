@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.mvp_0726.common.event.CommonEvent;
 import com.mvp_0726.common.utils.Constans;
 import com.mvp_0726.common.utils.StatusBarUtil;
-import com.mvp_0726.project_0726.home.ui.MvpMainActivity;
+import com.mvp_0726.project_0726.home.ui.MvpThirdMainActivity;
 import com.mvp_0726.project_0726.login.contract.LoginContract;
 import com.mvp_0726.project_0726.login.presenter.LoginPresenter;
 import com.project.wisdomfirecontrol.R;
@@ -95,8 +95,8 @@ public class LoginActivity extends com.mvp_0726.common.base.codereview.BaseActiv
         etUserPwd.setSelection(etUserPwd.getText().length());
         etUserPwd.extendSelection(etUserPwd.getText().length());
 
-        checkVersion();
         SharedPreUtil.saveString(Global.mContext, "imagthpath", imagthpath);
+        checkVersion();
     }
 
     //    检查版本更新
@@ -231,7 +231,8 @@ public class LoginActivity extends com.mvp_0726.common.base.codereview.BaseActiv
         String companyName = personel.getOrgName();
         SharedPreUtil.saveString(Global.mContext, "companyName", companyName);
         SharedPreUtil.saveString(Global.mContext, "companyType", companyType);
-        SharedPreUtil.saveString(Global.mContext, "orgShortName", companyLogoName);
+        SharedPreUtil.saveString(Global.mContext, "orgShortName", roleName);
+//        SharedPreUtil.saveString(Global.mContext, "orgShortName", companyLogoName);
 
         if (!TextUtils.isEmpty(imagthpath)) {
             SharedPreUtil.saveString(Global.mContext, "imagthpath", imagthpath);
@@ -247,7 +248,9 @@ public class LoginActivity extends com.mvp_0726.common.base.codereview.BaseActiv
         }
         Intent intent;
 //        intent = new Intent(this, MainChangeActivity.class);
-        intent = new Intent(this, MvpMainActivity.class);
+//        intent = new Intent(this, MvpMainActivity.class);
+//        intent = new Intent(this, TestActivity.class);
+        intent = new Intent(this, MvpThirdMainActivity.class);
         intent.putExtra("loginBean", data);
         super.startActivity(intent);
         super.finish();

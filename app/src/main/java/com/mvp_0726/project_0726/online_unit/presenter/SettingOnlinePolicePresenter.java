@@ -8,6 +8,7 @@ import com.mvp_0726.common.event.CommonEvent;
 import com.mvp_0726.common.network.HttpObservable;
 import com.mvp_0726.common.network.HttpResultObserver;
 import com.mvp_0726.common.utils.Constans;
+import com.mvp_0726.project_0726.bean.settingpolice.GetsensorObdSuccessBean;
 import com.mvp_0726.project_0726.online_unit.contract.SettingOnlinePoliceContract;
 import com.mvp_0726.project_0726.online_unit.event.SettingFragmentEvent;
 import com.mvp_0726.project_0726.online_unit.event.SettingPoliceEvent;
@@ -114,5 +115,36 @@ public class SettingOnlinePolicePresenter extends BasePresenterImpl<SettingOnlin
                         EventBus.getDefault().post(new SettingFragmentEvent(errorWhat, e.toString()));
                     }
                 });
+    }
+
+
+    @Override
+    public void getsensorObd(String terminalNo) {
+        HttpObservable.getObservable(apiRetrofit.getsensorObd(terminalNo))
+                .subscribe(new HttpResultObserver<GetsensorObdSuccessBean>() {
+                    @Override
+                    protected void onLoading(Disposable d) {
+//                        showLoadingDialog("加载中...");
+                    }
+
+                    @Override
+                    protected void onSuccess(GetsensorObdSuccessBean o) {
+//                        dismissLoadingDialog();
+                        if (getView() != null) {
+                            if (o.isSuccess()) {
+                                EventBus.getDefault().post(new SettingPoliceEvent(Constans.OBD_SUCCESS, o.getData()));
+                            } else {
+                                EventBus.getDefault().post(new SettingPoliceEvent(Constans.OBD_ERROR, o.getMsg()));
+                            }
+                        }
+                    }
+
+                    @Override
+                    protected void onFail(Exception e) {
+//                        dismissLoadingDialog();
+                        EventBus.getDefault().post(new SettingPoliceEvent(Constans.OBD_ERROR, e.toString()));
+                    }
+                });
+
     }
 }

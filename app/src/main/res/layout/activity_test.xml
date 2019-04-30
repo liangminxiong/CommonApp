@@ -12,9 +12,10 @@
     <TextView
         android:id="@+id/tv_ulr"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/txt_dp_45"
+        android:layout_height="@dimen/txt_dp_120"
         android:gravity="center"
         android:text="切换"
+        android:background="@drawable/qy_bg"
         android:textColor="@color/red"/>
 
     <ProgressBar

@@ -7,6 +7,8 @@ package com.project.wisdomfirecontrol.firecontrol.model.protocol;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -16,12 +18,14 @@ import retrofit2.http.Query;
  */
 public interface IHttpService {
 
+    String VIDEO_IP = "120.78.217.251";
     String HOST_IP = "120.78.217.251/zgbd_fireControl/";
     //        String HOST_IP = "www.zgjiuan.cn/";//邓超
     //        String HOST_IP = "10.0.0.65:8080";//小古
     String BASE_URL = "http://" + HOST_IP;
     String BASE_URL_IP = "http://www.zgjiuan.cn/zgbd_fireControl/";
     String HOST_URL = BASE_URL + "h5/";
+    String HOST_URL_Z = "http://www.zgjiuan.cn/h5/";
     String HOST_URL_CHANGE = BASE_URL_IP + "h5/";
     /*企业端*/
     String HOME_URL = BASE_URL_IP + "H5/fire/";
@@ -101,15 +105,38 @@ public interface IHttpService {
 
     //5、行政公文
     // 1通知公文
-    String FIRE_DECUMENT_MANAGE_URL_UNIT = HOME_URL_UNIT + "fireJG6.html";
+//    String FIRE_DECUMENT_MANAGE_URL_UNIT = HOME_URL_UNIT + "fireJG6.html";
+    String BASEH5URL = "http://www.zgjiuan.cn/zgbd_fireControl/jsps/application/notice/";
+
+    String FIRE_DECUMENT_MANAGE_URL_UNIT = BASEH5URL + "notice-grid.jsp";
     //2发送整改公文
-    String WATCH_KEEPER_URL_UNIT = HOME_URL_UNIT + "fireJG7.html";
-    // 3通知列表
-    String FIRE_INSPECTION_URL_UNIT = HOME_URL_JSPS_NOTICE + "notice1H5.jsp";
-    // 4整改列表
-    String INSPECTION_RECORD_URL_UNIT = HOME_URL_JSPS_NOTICE + "notice2H5.jsp";
+//    String WATCH_KEEPER_URL_UNIT = HOME_URL_UNIT + "fireJG7.html";
+    String WATCH_KEEPER_URL_UNIT = BASEH5URL + "notice-grid.jsp";
+    // 3通知发布
+//    String FIRE_INSPECTION_URL_UNIT = HOME_URL_JSPS_NOTICE + "notice1H5.jsp";
+    String FIRE_INSPECTION_URL_UNIT = BASEH5URL + "notice-push-grid.jsp";
+    // 4整改发布
+//    String INSPECTION_RECORD_URL_UNIT = HOME_URL_JSPS_NOTICE + "notice2H5.jsp";
+    String INSPECTION_RECORD_URL_UNIT = BASEH5URL + "notice-push-grid.jsp";
 
     String INSPECTION_VIDEO_URL_UNIT = HOME_URL_UNIT + "fireJG8.html";
+
+    /*公文整改*/
+    //    工单发布
+    String URL_H5_PUBLISH_ORDER = BASE_URL_IP + "jsps/application/maintenance/maintenance-grid.jsp";
+    //    我的工单
+    String URL_H5_MY_ORDER = BASE_URL_IP + "jsps/application/maintenance/maintenance-mine.jsp";
+
+    /*安全档案*/
+    /*我的档案*/
+    String URL_H5_MY_GRID = BASE_URL_IP + "jsps/application/aptitude/aptitude-grid.jsp";
+    //审核档案
+    String URL_H5_MY_AUDIT = BASE_URL_IP + "jsps/application/aptitude/aptitude-audit.jsp";
+
+    /*机构管理*/
+    String URL_H5_ORGANSMANAGE = "http://www.zgjiuan.cn/jsps/application/system/organ/organ-list.jsp";
+    /*区域管理*/
+    String URL_H5_AREAMANAGE = "http://www.zgjiuan.cn/jsps/system/areaList.jsp";
 
 
     //    0: 账号密码登录
@@ -139,6 +166,7 @@ public interface IHttpService {
     int TYPE_DELETESENSOR = 8;//删除设备
     int TYPE_GETAREAPERSON = 9;//获取消防负责人
     int TYPE_GETORGANDETAILBYID = 10;//获取公司信息
+    int TYPE_GETOBD= 11;//获取obd信息
 
     String XIAQU_UNIT = "辖区单位";
     String ONLINE_UNIT = "联网单位";
@@ -172,30 +200,33 @@ public interface IHttpService {
 
 
     /*打卡*/
+    @FormUrlEncoded
     @POST("daka.action")
     Call<JsonObject> daka(
-            @Query("userid") String userid,
-            @Query("latitude") String Latitude,
-            @Query("longitude") String Longitude,
-            @Query("address") String address,
-            @Query("memo") String memo,
-            @Query("imageurl") String imageurl,
-            @Query("pid") String pid);
+            @Field("userid") String userid,
+            @Field("latitude") String Latitude,
+            @Field("longitude") String Longitude,
+            @Field("address") String address,
+            @Field("memo") String memo,
+            @Field("pid") String pid,
+            @Field("imageurl") String imageurl);
+
 
     /*隐患上报*/
+    @FormUrlEncoded
     @POST("yinhuan.action")
     Call<JsonObject> troubleReport(
-            @Query("name") String name,
-            @Query("img") String img,
-            @Query("video") String video,
-            @Query("pid") String pid,
-            @Query("memo") String memo,
-            @Query("terminalNO") String terminalNO,
-            @Query("voice") String voice);
+            @Field("name") String name,
+            @Field("img") String img,
+            @Field("video") String video,
+            @Field("pid") String pid,
+            @Field("memo") String memo,
+            @Field("terminalNO") String terminalNO,
+            @Field("voice") String voice);
 
     /*
-   * 获取正文
-   * */
+     * 获取正文
+     * */
     @POST("zhenggai.action")
     Call<JsonObject> getDocument(
             @Query("pid") String pid,
@@ -221,11 +252,12 @@ public interface IHttpService {
             @Query("pid") String pid);
 
     /*提交资质文件*/
+    @FormUrlEncoded
     @POST("saveOrganImg.action")
     Call<JsonObject> saveOrganImg(
-            @Query("id") String userid,
-            @Query("pid") String pid,
-            @Query("newimg") String imageurl);
+            @Field("id") String userid,
+            @Field("pid") String pid,
+            @Field("newimg") String imageurl);
 
     /*删除图片*/
     @POST("deleteOrganImg.action")
@@ -235,49 +267,53 @@ public interface IHttpService {
             @Query("isAnd") String isAnd);
 
     /*获取隐患类型*/
+    @FormUrlEncoded
     @POST("getSensorList.action")
     Call<JsonObject> getSensorList(
             @Query("pid") String pid);
 
     /*获取首页item 条数*/
+    @FormUrlEncoded
     @POST("getEquipmentCount.action")
     Call<JsonObject> getequipmentcount(
             @Query("pid") String pid);
 
-    /*getvideoequipment 条数*/
+    /*getvideoequipment 视频列表*/
+    @FormUrlEncoded
     @POST("getvideoequipment.action")
     Call<JsonObject> getvideoequipment(
-            @Query("pid") String pid,
-            @Query("type") String type);
+            @Field("pid") String pid,
+            @Field("type") String type);
 
     /*getvideoequipment 条数*/
+    @FormUrlEncoded
     @POST("userregister.action")
     Call<JsonObject> userregister(
-            @Query("province") String province,
-            @Query("city") String city,
-            @Query("district") String district,
-            @Query("township") String township,
-            @Query("address") String address,
-            @Query("orgName") String orgName,
-            @Query("orgShortName") String orgShortName,
-            @Query("legalperson") String legalperson,
-            @Query("principal") String principal,
-            @Query("principalTel") String principalTel,
-            @Query("name1") String name1,
-            @Query("phone1") String phone1,
-            @Query("name2") String name2,
-            @Query("phone2") String phone2,
-            @Query("name3") String name3,
-            @Query("phone3") String phone3,
-            @Query("name4") String name4,
-            @Query("phone4") String phone4,
-            @Query("area") String area,
-            @Query("renshu") String renshu,
-            @Query("imageArrays") String imageArrays,
-            @Query("tel") String tel,
-            @Query("password") String password,
-            @Query("lat") String lat,
-            @Query("lng") String lng);
+            @Field("province") String province,
+            @Field("city") String city,
+            @Field("district") String district,
+            @Field("township") String township,
+            @Field("address") String address,
+            @Field("orgName") String orgName,
+            @Field("orgShortName") String orgShortName,
+            @Field("legalperson") String legalperson,
+            @Field("principal") String principal,
+            @Field("principalTel") String principalTel,
+            @Field("name1") String name1,
+            @Field("phone1") String phone1,
+            @Field("name2") String name2,
+            @Field("phone2") String phone2,
+            @Field("name3") String name3,
+            @Field("phone3") String phone3,
+            @Field("name4") String name4,
+            @Field("phone4") String phone4,
+            @Field("area") String area,
+            @Field("renshu") String renshu,
+            @Field("imageArrays") String imageArrays,
+            @Field("tel") String tel,
+            @Field("password") String password,
+            @Field("lat") String lat,
+            @Field("lng") String lng);
 
     /*设备管理*/
     @POST("getsensor.action")
@@ -358,4 +394,9 @@ public interface IHttpService {
     @POST("UpdateSensor.action")
     Call<JsonObject> UpdateSensor(
             @Query("id") String id);
+
+    /*获取OBD*/
+    @POST("getsensorobd.action")
+    Call<JsonObject> getsensorObd(
+            @Query("terminalNo") String terminalNo);
 }

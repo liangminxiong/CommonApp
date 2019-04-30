@@ -16,8 +16,6 @@ import com.project.wisdomfirecontrol.common.base.UserManage;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.video.ChangeVideoEquipmentDataBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoEquipmentBean;
 import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
-import com.project.wisdomfirecontrol.firecontrol.model.protocol.IHttpService;
-import com.project.wisdomfirecontrol.firecontrol.model.protocol.RetrofitManager;
 import com.project.wisdomfirecontrol.firecontrol.treesList.Node;
 import com.project.wisdomfirecontrol.firecontrol.treesList.OnTreeNodeClickListener;
 import com.project.wisdomfirecontrol.firecontrol.treesList.adapter.SimpleTreeRecyclerAdapter;
@@ -39,6 +37,7 @@ public class VideoSytemListActivity extends BaseActivity {
     private RecyclerView recyclerview;
     private String type;
     private SimpleTreeRecyclerAdapter mAdapter;
+    private CommonProtocol mCommonProtocol;
 
     @Override
     public int getLayoutRes() {
@@ -79,11 +78,11 @@ public class VideoSytemListActivity extends BaseActivity {
 
     //    获取视频列表条数
     private void getEquipmentCount() {
-        CommonProtocol commonProtocol = new CommonProtocol();
+        mCommonProtocol = new CommonProtocol();
         pid = Unit_StringUtils.getUserPid(Global.mContext);
         showWaitDialog(VideoSytemListActivity.this, getResources().getString(R.string.inupdate));
-        RetrofitManager.changeApiBaseUrl(IHttpService.HOST_URL_CHANGE);
-        commonProtocol.getvideoequipment(this, pid, type);
+//        RetrofitManager.changeApiBaseUrl(IHttpService.HOST_URL_CHANGE);
+        mCommonProtocol.getvideoequipment(this, pid, type);
     }
 
     @Override
@@ -149,4 +148,6 @@ public class VideoSytemListActivity extends BaseActivity {
         dismissWaitDialog();
         showToast(error);
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.project.wisdomfirecontrol.firecontrol.base;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,6 +19,7 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
  */
 public class MyApplication extends MvpApplication {
 
+    @SuppressLint("StaticFieldLeak")
     public static MyApplication instance;
     APIWebviewTBS mAPIWebviewTBS;
     private DBManager dbHelper;

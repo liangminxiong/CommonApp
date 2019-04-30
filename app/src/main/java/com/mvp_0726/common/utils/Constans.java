@@ -51,6 +51,13 @@ public class Constans {
     public static final int COMPANYINFOSSUCESS = 43;//获取公司信息成功
     public static final int WEBH5SUCESS = 44;//h5成功/*
 
+    public static final int GETAPPNUMSUCESS = 446;//角标数据成功/*
+    public static final int GETAPPNUMERROR = 447;//角标数据/
+
+    /*安全档案界面角标*/
+    public static final int GETSUMTYPENUMSUCESS = 448;//角标数据成功/*
+    public static final int GETSUMTYPENUMERROR = 449;//角标数据/*
+
     /* 联网 报警 故障 50-70
      * */
     public static final int SETTINGSUCESS = 50;//获取成功
@@ -71,5 +78,13 @@ public class Constans {
     public static final int QIGANERROR = 63;//失败
     public static final int XIAOFANGERROR = 64;//失败
     public static final int MIEHUOERROR = 65;//失败
+
+    /*巡查打卡*/
+    public static final int PATROLOCKSUCCESS = 66;//成功
+    public static final int PATROLOCKERROR = 67;
+
+    //获取OBD数据
+    public static final int OBD_SUCCESS = 68;//成功
+    public static final int OBD_ERROR = 68;//失败
 
 }

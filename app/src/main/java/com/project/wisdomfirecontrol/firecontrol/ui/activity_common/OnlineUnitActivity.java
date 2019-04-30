@@ -37,7 +37,7 @@ public class OnlineUnitActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        title.setText("联网单位");
+        title.setText("辖区地图");
         webView = findView(R.id.webview);
         mWebProgressbar = findView(R.id.web_progressbar);
 

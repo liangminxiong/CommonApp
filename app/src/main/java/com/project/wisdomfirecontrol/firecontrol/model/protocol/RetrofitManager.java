@@ -17,7 +17,7 @@ public class RetrofitManager {
 
     private static RetrofitManager instance;
 
-    private static String baseUrl = IHttpService.HOST_URL;
+    private static String baseUrl = IHttpService.HOST_URL_Z;
 
     private RetrofitManager() {
     }

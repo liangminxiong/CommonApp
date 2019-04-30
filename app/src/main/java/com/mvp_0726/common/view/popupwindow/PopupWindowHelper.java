@@ -144,8 +144,8 @@ public class PopupWindowHelper implements PopupWindow.OnDismissListener {
                         -(mPopupWindow.getHeight() + mAnchor.getMeasuredHeight()));
                 break;
             case BOTTOM:
-                mPopupWindow.showAsDropDown(mAnchor,
-                        Math.abs(mAnchor.getWidth() / 2 - mPopupWindow.getWidth() / 2), 0);
+                mPopupWindow.showAsDropDown(mAnchor, mAnchor.getWidth() / 4, 0);
+//                mPopupWindow.showAsDropDown(mAnchor, 0, 0);
                 break;
             case SCREEN_BOTTOM:
                 mPopupWindow.showAtLocation(mAnchor, Gravity.BOTTOM, 0, 0);

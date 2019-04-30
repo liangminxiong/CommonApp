@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 
 import com.mvp_0726.common.event.CommonEvent;
 import com.mvp_0726.common.utils.Constans;
+import com.mvp_0726.common.utils.LogUtils;
 import com.mvp_0726.common.view.webview.H5JSInterface;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Global;
@@ -62,6 +63,7 @@ public class WebViewUtils {
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE); // 不加载缓存内容
 
+
         // 加快HTML网页加载完成速度
         if (Build.VERSION.SDK_INT >= 19) {
             webSettings.setLoadsImagesAutomatically(true);
@@ -81,7 +83,7 @@ public class WebViewUtils {
                 Log.d("tag", "shouldOverrideUrlLoading: " + url);
                 //这里进行url拦截
                 if (url != null && url.contains("androidUpload")) {
-                    Global.showToast("aaaaaaaaaaaaa");
+//                    Global.showToast("aaaaaaaaaaaaa");
                 }
 
                 view.loadUrl(url);
@@ -164,6 +166,10 @@ public class WebViewUtils {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url != null && url.contains("androidUpload")) {
+                    Global.showToast("aaaaaaaaaaaaa");
+                }
+                LogUtils.d("tag===" + url);
                 view.loadUrl(url);
                 return true;
             }
@@ -204,7 +210,6 @@ public class WebViewUtils {
                 progressBar.setProgress(newProgress);
             }
 
-
             @Override
             public void onShowCustomView(View view, IX5WebChromeClient.CustomViewCallback callback) {
             }
@@ -236,11 +241,8 @@ public class WebViewUtils {
         public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,
                                     long contentLength) {
             Log.d(TAG, "onDownloadStart: " + url);
-            EventBus.getDefault().post(new CommonEvent(Constans.WEBSUCESS, url));
+            EventBus.getDefault().post(new CommonEvent(Constans.WEBSUCESS, url));//文件详情
         }
-
     }
-
-
 
 }

@@ -23,9 +23,10 @@ public interface Constant {
     String SETTINGMANAGE = "设备管理";
     String MAINTENANCE__INSPECTION = "维保巡查";
     String SECURITY_FIL = "安全档案";
+    String SECURITY_ZHENGGAI = "消防整改";
     String TRAINING_CHECK = "培训检查";
     String MAINTENANCE_WORKORDER = "维保工单";
-    String SYSTEMMAIN = "系统维护";
+    String SYSTEMMAIN = "系统设置";
     //    String DEVICE_INFORMATION = "设备信息";
     String JURISDICTION_MANAGEMENT = "辖区管理";
     String MORE_FEATURES = "更多功能";
@@ -35,6 +36,9 @@ public interface Constant {
 
     String XIAOFANGBAOJING = "消防报警";
     String SHEBEIGUZHANG = "设备故障";
+
+    String ORGANSMANAGE = "机构管理";
+    String AREAMANAGE = "区域管理";
 
     int FISRT = 1;
     int SECOND = 2;

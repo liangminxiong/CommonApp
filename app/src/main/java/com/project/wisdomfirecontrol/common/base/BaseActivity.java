@@ -354,6 +354,12 @@ public abstract class BaseActivity extends AppCompatActivity
             disallowRun.run();
         }
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
 
 

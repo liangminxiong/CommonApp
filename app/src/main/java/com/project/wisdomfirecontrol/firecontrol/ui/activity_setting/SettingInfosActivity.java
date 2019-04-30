@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -28,11 +29,17 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.mvp_0726.project_0726.bean.settingpolice.GetsensorObdDataBean;
+import com.mvp_0726.project_0726.bean.settingpolice.GetsensorObdSuccessBean;
+import com.mvp_0726.project_0726.bean.settingpolice.ObdParamBean;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.BaseActivity;
 import com.project.wisdomfirecontrol.common.base.Global;
+import com.project.wisdomfirecontrol.common.util.LogUtil;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.ObdBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerDataBean;
+import com.project.wisdomfirecontrol.firecontrol.model.protocol.CommonProtocol;
+import com.project.wisdomfirecontrol.firecontrol.model.protocol.IHttpService;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.BaiduMapUtils;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.DayAxisValueFormatter;
 import com.project.wisdomfirecontrol.firecontrol.ui.utils.XYMarkerView;
@@ -66,6 +73,7 @@ public class SettingInfosActivity extends BaseActivity {
     private String str;
 
     private RelativeLayout rl_map;
+    private CommonProtocol mCommonProtocol;
 
     @Override
     public int getLayoutRes() {
@@ -122,8 +130,14 @@ public class SettingInfosActivity extends BaseActivity {
                 String creattime = settingManagerDataBean.getCreattime();
 
                 ObdBean obd = settingManagerDataBean.getObd();
+                if (obd != null) {
+//                    showObdDatas(obd);
+                }
+                LogUtil.d("============size==00===" + terminalno);
+                if (!TextUtils.isEmpty(terminalno)) {
+                    getOBDDatas(terminalno);
+                }
 
-                showObdDatas(obd);
                 tv_install_address.setText("安装位置：" + setposition);
                 tv_setting_type.setText("设备类型：" + type);
                 tv_setting_num.setText("设备号：" + terminalno);
@@ -180,7 +194,8 @@ public class SettingInfosActivity extends BaseActivity {
     }
 
     /*展示obd数据*/
-    private void showObdDatas(ObdBean obd) {
+//    private void showObdDatas(ObdBean obd) {
+    private void showObdDatas(ObdParamBean obd) {
         List<BarEntry> entries_e = new ArrayList<>();
         List<BarEntry> entries_v = new ArrayList<>();
         List<BarEntry> entries_temp = new ArrayList<>();
@@ -191,11 +206,14 @@ public class SettingInfosActivity extends BaseActivity {
         String be = obd.getBe();
         String ce = obd.getCe();
         String louele = obd.getLouele();
+
         entries_e.add(new BarEntry(0, returnFloat(ae)));
         entries_e.add(new BarEntry(1, returnFloat(be)));
         entries_e.add(new BarEntry(2, returnFloat(ce)));
-        entries_e.add(new BarEntry(3, returnFloat(louele)));
-
+        String substring = louele.substring(0, louele.length() - 2);
+        LogUtil.d("=============" + ae + " ++ " + be + " ++ " + ce + " +  " + substring);
+        entries_e.add(new BarEntry(3, Float.valueOf(substring)));
+//
         String av = obd.getAv();
         String bv = obd.getBv();
         String cv = obd.getCv();
@@ -236,14 +254,15 @@ public class SettingInfosActivity extends BaseActivity {
             } else if (str.contains("℃")) {
                 String[] as = str.split("℃");
                 f = Float.valueOf(as[0]);
-            } else if (str.contains("ma")) {
-                String[] as = str.split("ma");
-                f = Float.valueOf(as[0]);
+            } else if (str.contains("mA")) {
+//                String[] as = str.split("mA");
+                String substring = str.substring(str.length() - 2, str.length() - 1);
+//                f = Float.valueOf(as[0]);
+                f = Float.valueOf(substring);
             }
         } else {
             f = 0;
         }
-        Log.d(TAG, "returnFloat111: " + f);
         return f;
     }
 
@@ -403,5 +422,32 @@ public class SettingInfosActivity extends BaseActivity {
                 }
             }
         }
+    }
+
+
+    private void getOBDDatas(String terminalNo) {
+        showWaitDialog(SettingInfosActivity.this, getString(R.string.inupdate));
+        mCommonProtocol = new CommonProtocol();
+        mCommonProtocol.getsensorObd(this, terminalNo);
+    }
+
+    @Override
+    public void onHttpSuccess(int reqType, Message obj) {
+        super.onHttpSuccess(reqType, obj);
+        dismissWaitDialog();
+
+        if (reqType == IHttpService.TYPE_GETOBD) {
+            GetsensorObdSuccessBean bean = (GetsensorObdSuccessBean) obj.obj;
+            GetsensorObdDataBean obdDataBean = bean.getData().get(0);
+            LogUtil.d("============size==" + bean.getData().size() + "  +++ " + obdDataBean.getProcUserName());
+            ObdParamBean obdBean = obdDataBean.getObdParam();
+            showObdDatas(obdBean);
+        }
+    }
+
+    @Override
+    public void onHttpError(int reqType, String error) {
+        super.onHttpError(reqType, error);
+        dismissWaitDialog();
     }
 }

@@ -2,7 +2,8 @@ package com.project.wisdomfirecontrol.common.base;
 
 public class Const {
 
-    public static final String APKURL = "http://121.201.18.209/download/android/FireControl/";//APP更新下载链接
+    //    public static final String APKURL = "http://121.201.18.209/download/android/FireControl/";//APP更新下载链接
+    public static final String APKURL = "http://www.zgjiuan.cn/file/app/apk/";//APP更新下载链接
     public static final String APPNAME = "fire_control_company.apk";
     public static final String VERSIONNAME = "fire_control_company.txt";
 

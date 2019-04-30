@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.mvp_0726.common.view.DrawableCenterTextView;
 import com.project.wisdomfirecontrol.R;
 import com.project.wisdomfirecontrol.common.base.Global;
+import com.project.wisdomfirecontrol.common.util.LogUtil;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerDataBean;
 
 import java.util.ArrayList;
@@ -175,9 +176,22 @@ public class SettingOnlinePoliceLvAdapter extends BaseAdapter implements View.On
             holder.tv_item_time.setVisibility(View.VISIBLE);
 
             holder.tv_item_time.setText(state);
-            holder.tv_item_name.setText(listDatas.get(position).getSetposition());
-            holder.tv_item_type.setText(listDatas.get(position).getType());
-            holder.tv_item_type_name.setText(listDatas.get(position).getAreaname());
+            String setposition = listDatas.get(position).getSetposition();
+            LogUtil.d("==============" + setposition);
+            if (TextUtils.isEmpty(setposition)) {
+                setposition = "---";
+            }
+            holder.tv_item_name.setText(setposition);
+            String type = listDatas.get(position).getType();
+            if (TextUtils.isEmpty(type)) {
+                type = "---";
+            }
+            holder.tv_item_type.setText(type);
+            String areaname = listDatas.get(position).getAreaname();
+            if (TextUtils.isEmpty(areaname)) {
+                areaname = "---";
+            }
+            holder.tv_item_type_name.setText(areaname);
 
             holder.tv_item_type_name.setBackgroundResource(R.color.white);
 
@@ -200,11 +214,11 @@ public class SettingOnlinePoliceLvAdapter extends BaseAdapter implements View.On
             holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                /*
-                * b=选中状态
-                * if b = true 将值添加至checkBoxIDList
-                * if b = false 将值从checkBoxIDList移除
-                * */
+                    /*
+                     * b=选中状态
+                     * if b = true 将值添加至checkBoxIDList
+                     * if b = false 将值从checkBoxIDList移除
+                     * */
                     if (b) {
                         checkBoxIDList.add(listDatas.get(position).getSensorid());
                         Log.d("tag", "onCheckedChanged:111 " + checkBoxIDList.size() + " ++ " + listDatas.get(position).getSensorid());

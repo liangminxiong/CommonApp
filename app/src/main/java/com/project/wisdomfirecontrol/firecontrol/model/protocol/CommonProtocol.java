@@ -1,17 +1,18 @@
 package com.project.wisdomfirecontrol.firecontrol.model.protocol;
 
+import com.mvp_0726.project_0726.bean.settingpolice.GetsensorObdSuccessBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.area.AreaPerpersoBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.document.DocumentBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.login.LoginChangeBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.EquipmentCount;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetCompanyRegisterInfosBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetSenorcountBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.GetmonitorAreaBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.ImgNumBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.SubmitBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.other.TroubleTypeBean;
+import com.project.wisdomfirecontrol.firecontrol.model.bean.setting.SettingManagerBean;
 import com.project.wisdomfirecontrol.firecontrol.model.bean.video.VideoEquipmentBean;
-import com.project.wisdomfirecontrol.firecontrol.model.bean.login.LoginChangeBean;
 
 /**
  * 网络请求
@@ -35,13 +36,13 @@ public class CommonProtocol extends BaseProtocol {
                      String Longitude, String address, String memo,
                      String imageurl, String pid) {
         super.execute(super.getHttpService().daka(
-                userid, Latitude, Longitude, address, memo, imageurl, pid),
+                userid, Latitude, Longitude, address, memo, pid, imageurl),
                 callback, IHttpService.TYPE_DAKA, SubmitBean.class);
     }
 
     /*
-    * 隐患上报
-    * */
+     * 隐患上报
+     * */
     public void troubleReport(final OnHttpCallback callback, String name, String img,
                               String video, String pid, String memo, String terminalNO, String voice) {
         super.execute(super.getHttpService().troubleReport(
@@ -50,8 +51,8 @@ public class CommonProtocol extends BaseProtocol {
     }
 
     /*
-    * 获取正文
-    * */
+     * 获取正文
+     * */
     public void getDocument(final OnHttpCallback callback, String pid,
                             String limit, String page) {
         super.execute(super.getHttpService().getDocument(pid, limit, page),
@@ -121,28 +122,28 @@ public class CommonProtocol extends BaseProtocol {
     }
 
     /*获取设备信息的接口
-    */
+     */
     public void getsensor(final OnHttpCallback callback, String pid) {
         super.execute(super.getHttpService().getsensor(pid),
                 callback, IHttpService.TYPE_SETTINGMANAGER, SettingManagerBean.class);
     }
 
     /*删除已选设备接口
-    */
+     */
     public void deletesensor(final OnHttpCallback callback, String id) {
         super.execute(super.getHttpService().deletesensor(id),
                 callback, IHttpService.TYPE_DELETESENSOR, SubmitBean.class);
     }
 
     /*删除监控区域
-    */
+     */
     public void deletearea(final OnHttpCallback callback, String id) {
         super.execute(super.getHttpService().deletearea(id),
                 callback, IHttpService.TYPE_DELETESENSOR, SubmitBean.class);
     }
 
     /*获取消防负责人的接口
-    */
+     */
     public void getareaperson(final OnHttpCallback callback, String pid) {
         super.execute(super.getHttpService().getareaperson(pid),
                 callback, IHttpService.TYPE_GETAREAPERSON, AreaPerpersoBean.class);
@@ -156,14 +157,14 @@ public class CommonProtocol extends BaseProtocol {
     }
 
     /*获取监控区域服务接口
-    */
+     */
     public void getmonitorarea(final OnHttpCallback callback, String pid) {
         super.execute(super.getHttpService().getmonitorarea(pid),
                 callback, IHttpService.TYPE_SETTINGMANAGER, GetmonitorAreaBean.class);
     }
 
     /*获取公司信息接口
-    */
+     */
     public void getorgandetailbyid(final OnHttpCallback callback, String pid) {
         super.execute(super.getHttpService().getorgandetailbyid(pid),
                 callback, IHttpService.TYPE_GETORGANDETAILBYID, GetCompanyRegisterInfosBean.class);
@@ -171,7 +172,7 @@ public class CommonProtocol extends BaseProtocol {
 
     /*保存修改设备信息接口*/
     public void savemonitorarea(final OnHttpCallback callback, String id, String areaname, String personal,
-                           String tel, String address, String pid, String isc, String detailaddress, String lng, String lat
+                                String tel, String address, String pid, String isc, String detailaddress, String lng, String lat
             , String province, String city, String district, String street, String personalid) {
         super.execute(super.getHttpService().savemonitorarea(id, areaname, personal, tel, address, pid,
                 isc, detailaddress, lng, lat, province, city, district, street, personalid),
@@ -179,24 +180,31 @@ public class CommonProtocol extends BaseProtocol {
     }
 
     /*获取机构下的设备信息和监控区域信息服务接口
-   */
-    public void getsensor(final OnHttpCallback callback, String pid,String type,String state,String ishave) {
-        super.execute(super.getHttpService().getsensor(pid,type,state,ishave),
+     */
+    public void getsensor(final OnHttpCallback callback, String pid, String type, String state, String ishave) {
+        super.execute(super.getHttpService().getsensor(pid, type, state, ishave),
                 callback, IHttpService.TYPE_SETTINGMANAGER, SettingManagerBean.class);
     }
 
     /*获取设备类型数量服务接口
-   */
-    public void getsenorcount(final OnHttpCallback callback, String pid,String state) {
-        super.execute(super.getHttpService().getsenorcount(pid,state),
+     */
+    public void getsenorcount(final OnHttpCallback callback, String pid, String state) {
+        super.execute(super.getHttpService().getsenorcount(pid, state),
                 callback, IHttpService.TYPE_SETTINGMANAGER, GetSenorcountBean.class);
     }
 
     /*获取设备类型数量服务接口
-   */
+     */
     public void UpdateSensor(final OnHttpCallback callback, String id) {
         super.execute(super.getHttpService().UpdateSensor(id),
                 callback, IHttpService.TYPE_SETTINGMANAGER, SubmitBean.class);
+    }
+
+    /*获取OBD接口
+     */
+    public void getsensorObd(final OnHttpCallback callback, String terminalNo) {
+        super.execute(super.getHttpService().getsensorObd(terminalNo),
+                callback, IHttpService.TYPE_GETOBD, GetsensorObdSuccessBean.class);
     }
 
 }

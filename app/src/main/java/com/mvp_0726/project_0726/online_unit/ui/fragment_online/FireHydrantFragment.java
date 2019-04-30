@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -251,13 +250,13 @@ public class FireHydrantFragment extends BaseFragment implements SettingOnlinePo
 //        });
         rv_list_setting.setAdapter(settingAdapter);
 //        rv_list_setting.setOnItemClickListener(getActivity());
-        rv_list_setting.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//        rv_list_setting.setOnScrollListener(new AbsListView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 //                Log.d(TAG, "onScrollStateChanged222: " + firstVisibleItem + " +++ " + visibleItemCount + " ++ " + totalItemCount);
                 //isLoad为是否滚动到底部
 //                isLoad = ((firstVisibleItem+visibleItemCount)==totalItemCount);
@@ -266,8 +265,8 @@ public class FireHydrantFragment extends BaseFragment implements SettingOnlinePo
 //                settingAdapter.showNosettingCheck(view, isShow);
 //                settingAdapter.notifyDataSetChanged();
 //                }
-            }
-        });
+//            }
+//        });
 
     }
 

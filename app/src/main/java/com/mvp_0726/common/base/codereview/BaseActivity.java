@@ -1,5 +1,7 @@
 package com.mvp_0726.common.base.codereview;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +15,10 @@ import com.mvp_0726.common.network.RxLifeManager;
 import com.mvp_0726.common.utils.AppManager;
 import com.mvp_0726.common.utils.StatusBarUtil;
 import com.mvp_0726.common.utils.ToastUtils;
+import com.mvp_0726.common.view.dialog.SucessCacheSureDialog;
 import com.project.wisdomfirecontrol.R;
+import com.project.wisdomfirecontrol.firecontrol.ui.view.DialogHelper;
+import com.project.wisdomfirecontrol.firecontrol.ui.view.dialog.WaitDialog;
 
 
 /**
@@ -25,6 +30,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public BaseActivity mActivity;
     public RelativeLayout iv_back;
     public TextView tv_title;
+
+    private SucessCacheSureDialog sureDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +80,71 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         widgetClick(v);
     }
 
+    private static boolean _isVisible = false;
+    @SuppressLint("StaticFieldLeak")
+    private static WaitDialog _waitDialog;
+
+    public WaitDialog showWaitDialog(Activity activity, String message) {
+        if (!_isVisible) {
+            if (_waitDialog == null) {
+                _waitDialog = DialogHelper.getWaitDialog(activity, message);
+            }
+            if (_waitDialog != null) {
+                _waitDialog.setMessage(message);
+                if (!isFinishing()) {
+                    _waitDialog.show();
+                }
+                _isVisible = true;
+            }
+            return _waitDialog;
+        }
+        return null;
+    }
+
+    public void dismissWaitDialog() {
+        if (_isVisible && _waitDialog != null) {
+            try {
+                if (!isFinishing())
+                    _waitDialog.dismiss();
+                _waitDialog = null;
+                _isVisible = false;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void showSuccessDialog(String txt) {
+        try {
+            if (sureDialog == null) {
+                sureDialog = new SucessCacheSureDialog(this);
+            }
+            sureDialog.setTextContent(txt);
+            sureDialog.setSucessCacheSureListener(new SucessCacheSureDialog.SucessCacheSureListener() {
+                @Override
+                public void sure() {
+                    if (!isFinishing()) {
+                        sureDialog.dismiss();
+                    }
+                    finish();
+                }
+
+                @Override
+                public void cancle() {
+                    if (!isFinishing()) {
+                        sureDialog.dismiss();
+                    }
+                }
+            });
+
+            if (!isFinishing()) {
+                sureDialog.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -87,8 +159,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     /*
-    * 统一处理toolbar的基本设置
-    * */
+     * 统一处理toolbar的基本设置
+     * */
     protected void initTitleBar(Toolbar toolbar, String title) {
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
@@ -106,17 +178,22 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     /*
-    * 带图片的toast
-    * */
+     * 带图片的toast
+     * */
     public void showSuccessToast(String msg) {
         ToastUtils.success(msg);
     }
 
     /*
-    * error的toast
-    * */
+     * error的toast
+     * */
     public void showErrorToast(String msg) {
         ToastUtils.error(msg);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
 
